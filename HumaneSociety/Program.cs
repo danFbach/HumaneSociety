@@ -10,7 +10,9 @@ namespace HumaneSociety
     {
         static void Main(string[] args)
         {
-            userInterface run = new userInterface();
+            //userInterface run = new userInterface();
+            animals run = new animals();
+            run.addNewDog();
         }
     }
 }
