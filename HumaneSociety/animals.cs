@@ -8,43 +8,74 @@ namespace HumaneSociety
 {
     public class animals
     {
-        public bool checkAnswer = true;        
-        humaneSociety modifyAnimals = new humaneSociety();
-        List<cats> catInventory = new List<cats>();
-
-        public animals()
-        {                       
-        }
-        public void selectAnimalType()
+        public string animalName;
+        public string breed;
+        public string healthShots;
+        public int foodpreference;
+        public int foodAmount;
+        public int cageNumber;
+        public animals(string petsName, string species, string shots, int foodType, int foodQty, int cageAssignment)
         {
-            int typeOfAnimal;
-            Console.WriteLine("Do you need to add a (1)cat or (2)dog to the inventory?");
-            checkAnswer = int.TryParse(Console.ReadLine(), out typeOfAnimal);
-            if (checkAnswer.Equals(false)) { selectAnimalType(); }
-            if (typeOfAnimal.Equals(1))
-            {
-                addNewCat();
-            }
-            else if (typeOfAnimal.Equals(2))
-            {
-                addNewDog();
-            }
-            selectAnimalType();
+            animalName = petsName;
+            breed = species;
+            healthShots = shots;
+            foodpreference = foodType;
+            foodAmount = foodQty;
+            cageNumber = cageAssignment;
         }
-        
-        public void addNewDog()
-        { 
-            
-            string petsName = modifyAnimals.petName();
-            string shotStatus = modifyAnimals.animalShots();
-            int foodSelection = modifyAnimals.foodType();
-            int foodQtyNeeds = modifyAnimals.foodQTY();
-            int cageSelection = modifyAnimals.cageNumber();
-        }
-        public List<cats> addNewCat()
+        public string petName()
         {
-
-            return catInventory;
+            Console.WriteLine("What is the name of the pet?");
+            string animalName = Console.ReadLine();
+            if (animalName.Equals("")) { return petName(); }
+            return animalName;
+        }
+        public string animalBreed()
+        {
+            Console.WriteLine("Please enter the animals breed.");
+            string breed = Console.ReadLine();
+            if (breed.Equals(null)) { return animalBreed(); }
+            else { return breed; }
+        }
+        public string getAnimalShots()
+        {
+            Console.WriteLine("Has the animal had it proper shots? (Y/N)");
+            string shots = Console.ReadLine();
+            if (shots.Equals("y"))
+            {
+                return shots;
+            }
+            else if (shots.Equals("n"))
+            {
+                //TODO function for giving animal shots
+                return getAnimalShots();
+            }
+            else { return getAnimalShots(); }
+        }
+        public int getFoodType()
+        {
+            int foodSelect;
+            Console.WriteLine("What flavor of food does this animal like?"
+                + "\n1)Beef \n2)Fish \n3)Chicken \n4)Turkey");
+            bool answerCheck = int.TryParse(Console.ReadLine(), out foodSelect);
+            if (answerCheck.Equals(false)) { return getFoodType(); }
+            return foodSelect;
+        }
+        public int getFoodQTY()
+        {
+            int foodAmount;
+            Console.WriteLine("Please enter the daily quantity of food required in cups.");
+            bool answerCheck = int.TryParse(Console.ReadLine(), out foodAmount);
+            if (answerCheck.Equals(false)) { return getFoodQTY(); }
+            return foodAmount;
+        }
+        public int getCageNumber()
+        {
+            int cageNumberSelection;
+            Console.WriteLine("Please select the number of an available cage for the pet.");
+            bool answerCheck = int.TryParse(Console.ReadLine(), out cageNumberSelection);
+            if (answerCheck.Equals(false)) { return getCageNumber(); }
+            return cageNumberSelection;
         }
     }
 }

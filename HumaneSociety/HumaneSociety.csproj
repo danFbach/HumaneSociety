@@ -50,6 +50,7 @@
     <Compile Include="dogs.cs" />
     <Compile Include="employee.cs" />
     <Compile Include="humaneSociety.cs" />
+    <Compile Include="Interface1.cs" />
     <Compile Include="people.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

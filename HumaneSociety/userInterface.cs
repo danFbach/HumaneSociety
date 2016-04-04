@@ -14,6 +14,10 @@ namespace HumaneSociety
         bool answerCheck = true;
         int userTypeMenu;
         int customerAction;
+        public void initialize()
+        {
+            modifyAnimals.makeCages(40);
+        }
 
         public int initial()
         {

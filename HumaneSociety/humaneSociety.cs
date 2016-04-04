@@ -8,11 +8,12 @@ namespace HumaneSociety
 {
     public class humaneSociety
     {
+        public List<animals> animalInventory = new List<animals>();
+        animals animalModification = new animals();
         public bool answerCheck = true;
         public int animalType;
         public int employeeAction;
         bankAccount money = new bankAccount();
-        public List<animals> animalInventory = new List<animals>();
         public void employeeMenu()
         {
             Console.WriteLine("Welcome employeee, what are you here to do?" +
@@ -22,6 +23,7 @@ namespace HumaneSociety
             switch (employeeAction)
             {
                 case (1):
+                    selectAnimalType();
                     return;
                 case (2):
                     return;
@@ -29,56 +31,74 @@ namespace HumaneSociety
                     return;
             }
         }
-        //public List<animals> addAnimals()
-        //{
-        //    animalInventory.Add(new animals(dogs, cats));
-        //}
-        public string petName()
+        public List<animals> makeCages(int maxCages)
         {
-            Console.WriteLine("What is the name of the pet?");
-            string animalName = Console.ReadLine();
-            if (animalName.Equals("")) { return petName(); }
-            return animalName;
-        }
-        public string animalShots()
-        {
-            Console.WriteLine("Has the animal had it proper shots? (Y/N)");
-            string shots = Console.ReadLine();
-            if (shots.Equals("y"))
+            int catCages = 0;
+            catCages = maxCages / 2;
+            for (int cageCount = 0; cageCount < maxCages/2; cageCount++)
             {
-                return shots;
+                animalInventory.Add(new dogs(null, null, null, 0, 0, cageCount));
             }
-            else if (shots.Equals("n"))
+            for(;catCages < maxCages; catCages++)
             {
-                //TODO function for giving animal shots
-                return animalShots();
+                animalInventory.Add(new cats(null, null, null, 0, 0, catCages));
             }
-            else { return animalShots(); }
+            return animalInventory;
         }
-        public int foodType()
+        public void selectAnimalType()
         {
-            int foodSelect;
-            Console.WriteLine("What flavor of food does this animal like?"
-                + "\n1)Beef \n2)Fish \n3)Chicken \n4)Turkey");
-            answerCheck = int.TryParse(Console.ReadLine(), out foodSelect);
-            if (answerCheck.Equals(false)) { return foodType(); }
-            return foodSelect;
+            bool checkAnswer = true;
+            int typeOfAnimal;
+            Console.WriteLine("Do you need to add a (1)cat or (2)dog to the inventory?");
+            checkAnswer = int.TryParse(Console.ReadLine(), out typeOfAnimal);
+            if (checkAnswer.Equals(false)) { selectAnimalType(); }
+            if (typeOfAnimal.Equals(1))
+            {
+                addNewCat();
+            }
+            else if (typeOfAnimal.Equals(2))
+            {
+                addNewDog();
+            }
         }
-        public int foodQTY()
+        public List<animals> addNewDog()
         {
-            int foodAmount;
-            Console.WriteLine("Please enter the daily quantity of food required in cups.");
-            answerCheck = int.TryParse(Console.ReadLine(),out foodAmount);
-            if (answerCheck.Equals(false)) { return foodQTY(); }
-            return foodAmount;
+            string petsName = animalModification.petName();
+            string breed = animalModification.animalBreed();
+            string shotStatus = animalModification.getAnimalShots();
+            int foodSelection = animalModification.getFoodType();
+            int foodQtyNeeds = animalModification.getFoodQTY();
+            foreach (dogs info in animalInventory)
+            {
+                if (info.animalName == null)
+                {
+                    Console.Write(info.cageNumber + ", ");                    
+                }
+            }
+            int cageSelection = animalModification.getCageNumber();            
+            animalInventory[cageSelection] = new dogs(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection);
+
+            
+            Console.ReadKey();
+            return animalInventory;
         }
-        public int cageNumber()
+        public List<animals> addNewCat()
         {
-            int cageNumberSelection;
-            Console.WriteLine("Please select the number of an available cage for the pet.");
-            answerCheck = int.TryParse(Console.ReadLine(), out cageNumberSelection);
-            if (answerCheck.Equals(false)) { return cageNumber(); }
-            return cageNumberSelection;
+            string petsName = animalModification.petName();
+            string breed = animalModification.animalBreed();
+            string shotStatus = animalModification.getAnimalShots();
+            int foodSelection = animalModification.getFoodType();
+            int foodQtyNeeds = animalModification.getFoodQTY();
+            foreach (animals info in animalInventory)
+            {
+                if (info.animalName == null)
+                {
+                    Console.Write(info.cageNumber + ", ");
+                }
+            }
+            int cageSelection = animalModification.getCageNumber();
+            animalInventory[cageSelection] = new cats(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection);
+            return animalInventory;
         }
     }
 }
