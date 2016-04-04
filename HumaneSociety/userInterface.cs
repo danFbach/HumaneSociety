@@ -14,6 +14,7 @@ namespace HumaneSociety
         bool answerCheck = true;
         int userTypeMenu;
         int customerAction;
+        public int clientIndex;
         public void initialize()
         {
             modifyAnimals.makeCages(40);
@@ -27,6 +28,7 @@ namespace HumaneSociety
             switch (userTypeMenu)
             {
                 case (1):
+                    clientIndex = people.newOrOldClient();
                     customerMenu();
                     return userTypeMenu;
                 case (2):
@@ -39,7 +41,10 @@ namespace HumaneSociety
         }
         public void customerMenu()
         {
-            Console.WriteLine("Welcome the the Humane Society of awesome Animals. Please select one of the following options." +
+            
+            string currentClientName = people.adopters[clientIndex].adopterFirstName;
+            int clientsPetPreference = people.adopters[clientIndex].speciesChoice;
+            Console.WriteLine("Welcome "+ currentClientName + ", to the Humane Society of awesome Animals. Please select one of the following options." +
                 "\n1) View our pet catalog. \n2)Have us suggest a pet based on your preferences. \n3)Request a pet!");
             answerCheck = int.TryParse(Console.ReadLine(), out customerAction);
             if (answerCheck.Equals(false)) { customerMenu(); }

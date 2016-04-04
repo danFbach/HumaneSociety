@@ -68,7 +68,7 @@ namespace HumaneSociety
             string shotStatus = animalModification.getAnimalShots();
             int foodSelection = animalModification.getFoodType();
             int foodQtyNeeds = animalModification.getFoodQTY();
-            foreach (dogs info in animalInventory)
+            foreach (animals info in animalInventory)
             {
                 if (info.animalName == null)
                 {

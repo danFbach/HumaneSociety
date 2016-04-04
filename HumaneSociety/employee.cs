@@ -8,5 +8,6 @@ namespace HumaneSociety
 {
     public class employee : people
     {
+
     }
 }

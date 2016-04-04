@@ -14,15 +14,15 @@ namespace HumaneSociety
         public int foodpreference;
         public int foodAmount;
         public int cageNumber;
-        public animals(string petsName, string species, string shots, int foodType, int foodQty, int cageAssignment)
-        {
-            animalName = petsName;
-            breed = species;
-            healthShots = shots;
-            foodpreference = foodType;
-            foodAmount = foodQty;
-            cageNumber = cageAssignment;
-        }
+        //public animals(string petsName, string species, string shots, int foodType, int foodQty, int cageAssignment)
+        //{
+        //    animalName = petsName;
+        //    breed = species;
+        //    healthShots = shots;
+        //    foodpreference = foodType;
+        //    foodAmount = foodQty;
+        //    cageNumber = cageAssignment;
+        //}
         public string petName()
         {
             Console.WriteLine("What is the name of the pet?");

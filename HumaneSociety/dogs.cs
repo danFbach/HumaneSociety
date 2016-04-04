@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 namespace HumaneSociety
 {
     public class dogs : animals
-    {   
+    {
         public string shots;
-        public string breed;
         public int foodType;
         public int foodQty;
         public int playfulness;
