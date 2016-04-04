@@ -33,15 +33,14 @@ namespace HumaneSociety
         }
         public List<animals> makeCages(int maxCages)
         {
-            int catCages = 0;
-            catCages = maxCages / 2;
-            for (int cageCount = 0; cageCount < maxCages/2; cageCount++)
+            int cageCount = 0;
+            for (; cageCount < maxCages/2; cageCount++)
             {
                 animalInventory.Add(new dogs(null, null, null, 0, 0, cageCount));
             }
-            for(;catCages < maxCages; catCages++)
+            for(;cageCount < maxCages; cageCount++)
             {
-                animalInventory.Add(new cats(null, null, null, 0, 0, catCages));
+                animalInventory.Add(new cats(null, null, null, 0, 0, cageCount));
             }
             return animalInventory;
         }
@@ -70,15 +69,16 @@ namespace HumaneSociety
             int foodQtyNeeds = animalModification.getFoodQTY();
             foreach (animals info in animalInventory)
             {
-                if (info.animalName == null)
+                if(info.GetType() == typeof(cats))
                 {
-                    Console.Write(info.cageNumber + ", ");                    
-                }
+                    if (info.animalName == null)
+                    {
+                        Console.Write(info.cageNumber + ", ");
+                    }
+                }                
             }
             int cageSelection = animalModification.getCageNumber();            
-            animalInventory[cageSelection] = new dogs(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection);
-
-            
+            animalInventory[cageSelection] = new dogs(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection);            
             Console.ReadKey();
             return animalInventory;
         }
@@ -91,9 +91,12 @@ namespace HumaneSociety
             int foodQtyNeeds = animalModification.getFoodQTY();
             foreach (animals info in animalInventory)
             {
-                if (info.animalName == null)
+                if(info.GetType() == typeof(cats))
                 {
-                    Console.Write(info.cageNumber + ", ");
+                    if (info.animalName == null)
+                    {
+                        Console.Write(info.cageNumber + ", ");
+                    }
                 }
             }
             int cageSelection = animalModification.getCageNumber();

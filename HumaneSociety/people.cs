@@ -30,8 +30,10 @@ namespace HumaneSociety
             {
                 return newOrOldClient();
             }
-            else { return clientIndex; }
-            
+            else
+            {
+                return clientIndex;
+            }            
         }
         public int addToClientList()
         {

@@ -11,14 +11,14 @@ namespace HumaneSociety
         public string shots;
         public int foodType;
         public int foodQty;
-        public cats(string petName, string petBreed, string shotStatus, int foodType, int foodAmount, int assignedCage)
+        public cats(string petsName, string species, string shotStatus, int foodType, int foodQty, int cageAssignment)
         {
-            //animalName = petsName;
-            //breed = petBreed;
-            //shots = shotStatus;
-            //this.foodType = foodType;
-            //foodQty = foodAmount;
-            //cageNumber = assignedCage;
+            animalName = petsName;
+            breed = species;
+            shots = shotStatus;
+            this.foodType = foodType;
+            foodQty = foodAmount;
+            cageNumber = cageAssignment;
         }
     }
 }

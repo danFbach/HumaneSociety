@@ -12,15 +12,15 @@ namespace HumaneSociety
         public int foodType;
         public int foodQty;
         public int playfulness;
-        public dogs(string petName, string petBreed, string shotStatus, int foodType, int foodAmount, int assignedCage)
+        public dogs(string petsName, string species, string shotStatus, int foodType, int foodQty, int cageAssignment)
         {
-            animalName = petName;
-            breed = petBreed;
+            animalName = petsName;
+            breed = species;
             shots = shotStatus;
             this.foodType = foodType;
             foodQty = foodAmount;
             //playfulness = playfulLevel();
-            cageNumber = assignedCage;
+            cageNumber = cageAssignment;
         }
         public int playfulLevel()
         {           
