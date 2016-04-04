@@ -14,7 +14,6 @@ namespace HumaneSociety
         bool answerCheck = true;
         int userTypeMenu;
         int customerAction;
-        int employeeAction;
 
         public int initial()
         {

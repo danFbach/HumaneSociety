@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace HumaneSociety
 {
-    public class dogs: animals
+    public class dogs : animals
     {
+
+        List<dogs> dogInventory = new List<dogs>();
         bool answerCheck;
         public string animalName;
         public string shots;
@@ -16,22 +18,29 @@ namespace HumaneSociety
         public int foodQty;
         public int cageNumber;
         public int playfulness;
-        public dogs(string petName, string shotStatus, int foodType, int foodAmount, int assignedCage)
+        public dogs(string petName, string shotStatus, int foodType, int foodAmount, int assignedCage, int playfulness)
         {
+            
             animalName = petName;
             shots = shotStatus;
             this.foodType = foodType;
             foodQty = foodAmount;
-            cageNumber = assignedCage;
             playfulness = playfulLevel();
+            cageNumber = assignedCage;
+            updateDogs();
         }
         public int playfulLevel()
         {
+            
             int playLevel;
             Console.WriteLine("Please enter, using numbers 1-10, how playful the dog is.");
             checkAnswer = int.TryParse(Console.ReadLine(),out playLevel);
             if (checkAnswer.Equals(false)) { return playfulLevel(); }
             return playLevel;
+        }
+        public void updateDogs()
+        {
+            dogInventory.Add(new dogs(animalName, shots, this.foodType, foodQty, playfulness, cageNumber));
         }
     }
 }

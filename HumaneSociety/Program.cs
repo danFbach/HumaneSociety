@@ -12,7 +12,7 @@ namespace HumaneSociety
         {
             //userInterface run = new userInterface();
             animals run = new animals();
-            run.addNewDog();
+            run.selectAnimalType();
         }
     }
 }

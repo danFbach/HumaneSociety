@@ -8,11 +8,8 @@ namespace HumaneSociety
 {
     public class animals
     {
-        dogs modifyDogs;
-        public bool checkAnswer = true;
-        
+        public bool checkAnswer = true;        
         humaneSociety modifyAnimals = new humaneSociety();
-        List<dogs> dogInventory = new List<dogs>();
         List<cats> catInventory = new List<cats>();
 
         public animals()
@@ -32,9 +29,10 @@ namespace HumaneSociety
             {
                 addNewDog();
             }
+            selectAnimalType();
         }
         
-        public List<dogs> addNewDog()
+        public void addNewDog()
         { 
             
             string petsName = modifyAnimals.petName();
@@ -42,8 +40,6 @@ namespace HumaneSociety
             int foodSelection = modifyAnimals.foodType();
             int foodQtyNeeds = modifyAnimals.foodQTY();
             int cageSelection = modifyAnimals.cageNumber();
-            dogInventory.Add(new dogs(petsName, shotStatus, foodSelection, foodQtyNeeds, cageSelection));
-            return dogInventory;    
         }
         public List<cats> addNewCat()
         {

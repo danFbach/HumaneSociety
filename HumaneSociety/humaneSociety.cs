@@ -13,9 +13,6 @@ namespace HumaneSociety
         public int employeeAction;
         bankAccount money = new bankAccount();
         public List<animals> animalInventory = new List<animals>();
-        animals animals;
-
-        
         public void employeeMenu()
         {
             Console.WriteLine("Welcome employeee, what are you here to do?" +
@@ -47,8 +44,16 @@ namespace HumaneSociety
         {
             Console.WriteLine("Has the animal had it proper shots? (Y/N)");
             string shots = Console.ReadLine();
-            if (!shots.Equals("n") || !shots.Equals("y")) { return animalShots(); }
-            return shots;
+            if (shots.Equals("y"))
+            {
+                return shots;
+            }
+            else if (shots.Equals("n"))
+            {
+                //TODO function for giving animal shots
+                return animalShots();
+            }
+            else { return animalShots(); }
         }
         public int foodType()
         {
