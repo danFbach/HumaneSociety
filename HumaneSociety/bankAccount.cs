@@ -8,5 +8,13 @@ namespace HumaneSociety
 {
     public class bankAccount
     {
+        int totalMoney;
+        public bankAccount()
+        {
+        }
+        public void humaneSocietyAccount(int income)
+        {
+            totalMoney += income;
+        }
     }
 }

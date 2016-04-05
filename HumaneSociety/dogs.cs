@@ -9,8 +9,9 @@ namespace HumaneSociety
     public class dogs : animals
     {
         public int playfulness;
-        public dogs(string petsName, string species, string shotStatus, int foodType, int foodAmount, int cageAssignment)
+        public dogs(string petsName, string species, string shotStatus, int foodType, int foodAmount, int cageAssignment, int price)
         {
+            priceOfAnimal = price;
             animalName = petsName;
             breed = species;
             healthShots = shotStatus;

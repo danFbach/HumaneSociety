@@ -13,16 +13,10 @@ namespace HumaneSociety
         public string healthShots;
         public int foodType;
         public int foodQty;
+        public int priceOfAnimal;
         public int cageNumber;
         public animals()
-        {
-            //string petsName, string species, string shots, int foodType, int foodQty, int cageAssignment
-            //animalName = petsName;
-            //breed = species;
-            //healthShots = shots;
-            //foodpreference = foodType;
-            //foodAmount = foodQty;
-            //cageNumber = cageAssignment;
+        {           
         }
         public string petName()
         {
@@ -77,6 +71,14 @@ namespace HumaneSociety
             bool answerCheck = int.TryParse(Console.ReadLine(), out cageNumberSelection);
             if (answerCheck.Equals(false)) { return getCageNumber(); }
             return cageNumberSelection;
+        }
+        public int setPrice()
+        {
+            int setPetPrice;
+            Console.WriteLine("Please enter the price that you would like to sell this pet for.");
+            bool answerCheck = int.TryParse(Console.ReadLine(), out setPetPrice);
+            if (answerCheck.Equals(false)) { return setPrice(); }
+            return setPetPrice;
         }
     }
 }

@@ -46,6 +46,7 @@ namespace HumaneSociety
         public void customerMenu()
         {
             
+            
             string currentClientName = people.adopters[clientIndex].adopterFirstName;
             int clientsPetPreference = people.adopters[clientIndex].speciesChoice;
             Console.WriteLine("Welcome "+ currentClientName + ", to the Humane Society of awesome Animals. Please select one of the following options." +

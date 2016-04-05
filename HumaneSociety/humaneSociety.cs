@@ -41,20 +41,24 @@ namespace HumaneSociety
         }
         public void adoptAPet()
         {
+            string newPetName = "";
             int removeCage;
             Console.WriteLine("Please enter the cage number of the animal you would like to adopt.");
             bool check = int.TryParse(Console.ReadLine(), out removeCage);
             if (check.Equals(false)) { Console.WriteLine("Invalid Response."); adoptAPet(); }
             if (removeCage < 20)
             {
-                animalInventory[removeCage] = (new dogs("name", "breed", "shot", 0, 0, removeCage));
+                newPetName = animalInventory[removeCage].animalName;
+                animalInventory[removeCage] = (new dogs("name", "breed", "shot", 0, 0, removeCage, 0));
             }
             else if (removeCage >= 20 && removeCage < 40)
             {
-                animalInventory[removeCage] = (new cats("name", "breed", "shot", 0, 0, removeCage));
+                newPetName = animalInventory[removeCage].animalName;
+                animalInventory[removeCage] = (new cats("name", "breed", "shot", 0, 0, removeCage, 0));
             }else { adoptAPet(); }
             save.animalInventory(animalInventory);
-            Console.WriteLine("The animal from cage " + removeCage + " has been removed from the database");
+            Console.WriteLine("Thank you for adopting " + newPetName + "! Take good care of your new pet!" );
+            money.humaneSocietyAccount(animalInventory[removeCage].priceOfAnimal);
         }
         public void removeAnimal()
         {
@@ -63,11 +67,11 @@ namespace HumaneSociety
             bool check = int.TryParse(Console.ReadLine(), out removeCage);
             if(removeCage<20)
             {
-                animalInventory[removeCage] = (new dogs("name", "breed", "shot", 0, 0, removeCage));
+                animalInventory[removeCage] = (new dogs("name", "breed", "shot", 0, 0, removeCage, 0));
             }
             else if(removeCage >= 20 && removeCage < 40)
             {
-                animalInventory[removeCage] = (new cats("name", "breed", "shot", 0, 0, removeCage));
+                animalInventory[removeCage] = (new cats("name", "breed", "shot", 0, 0, removeCage, 0));
             }
             save.animalInventory(animalInventory);
             Console.WriteLine("The animal from cage " + removeCage + " has been removed from the database");
@@ -96,11 +100,11 @@ namespace HumaneSociety
                 {
                     if (pets.GetType() == typeof(dogs))
                     {
-                        Console.WriteLine("Dog: " + pets.animalName +", Breed: " + pets.breed + ", Medical Shots: " + pets.healthShots + ", Cage: " + pets.cageNumber);
+                        Console.WriteLine("Dog: " + pets.animalName +", Breed: " + pets.breed + ", Medical Shots: " + pets.healthShots + ", Price: " + pets.priceOfAnimal.ToString("C2") + ", Cage: " + pets.cageNumber);
                     }
                     if (pets.GetType() == typeof(cats))
                     {
-                        Console.WriteLine("Cats: " + pets.animalName + ", Breed: " + pets.breed + ", Medical Shots: " + pets.healthShots + ", Cage: " + pets.cageNumber);
+                        Console.WriteLine("Cats: " + pets.animalName + ", Breed: " + pets.breed + ", Medical Shots: " + pets.healthShots + ", Price: " + pets.priceOfAnimal.ToString("C2") + ", Cage: " + pets.cageNumber);
                     }
                 }
             }
@@ -122,8 +126,9 @@ namespace HumaneSociety
                     }
                 }                
             }
-            int cageSelection = animalModification.getCageNumber();            
-            animalInventory[cageSelection] = new dogs(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection);
+            int cageSelection = animalModification.getCageNumber();
+            int petPrice = animalModification.setPrice();           
+            animalInventory[cageSelection] = new dogs(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection, petPrice);
             save.animalInventory(animalInventory);        
             Console.ReadKey();
             return animalInventory;
@@ -147,7 +152,8 @@ namespace HumaneSociety
                 }
             }
             int cageSelection = animalModification.getCageNumber();
-            animalInventory[cageSelection] = new cats(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection);
+            int petPrice = animalModification.setPrice();
+            animalInventory[cageSelection] = new cats(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection, petPrice);
             save.animalInventory(animalInventory);
             return animalInventory;
         }

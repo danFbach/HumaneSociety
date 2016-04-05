@@ -16,22 +16,22 @@ namespace HumaneSociety
             using (StreamWriter saveDatabase = new StreamWriter(filePath + animalFile))
             {                
                 foreach (animals pets in animalsInStock)
-                {
-                    
-                        string name = pets.animalName;
-                        string breed = pets.breed;
-                        string shots = pets.healthShots;
-                        int foodType = pets.foodType;
-                        int foodQty = pets.foodQty;
-                        int assignedCage = pets.cageNumber;
+                {                    
+                    string name = pets.animalName;
+                    string breed = pets.breed;
+                    string shots = pets.healthShots;
+                    int foodType = pets.foodType;
+                    int foodQty = pets.foodQty;
+                    int assignedCage = pets.cageNumber;
+                    int petPrice = pets.priceOfAnimal;
                     if (pets.GetType() == typeof(dogs))
                     {
-                        saveDatabase.WriteLine("{0},{1},{2},{3},{4},{5}", name, breed, shots, foodType, foodQty, assignedCage);
+                        saveDatabase.WriteLine("{0},{1},{2},{3},{4},{5},{6}", name, breed, shots, foodType, foodQty, assignedCage, petPrice);
                     }
 
                     if (pets.GetType() == typeof(cats))
                     {
-                        saveDatabase.WriteLine("{0},{1},{2},{3},{4},{5}", name, breed, shots, foodType, foodQty, assignedCage);
+                        saveDatabase.WriteLine("{0},{1},{2},{3},{4},{5},{6}", name, breed, shots, foodType, foodQty, assignedCage, petPrice);
                     }              
                 }
             }
