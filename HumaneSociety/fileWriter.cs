@@ -22,7 +22,7 @@ namespace HumaneSociety
                     string breed = pets.breed;
                     string shots = pets.healthShots;
                     int foodType = pets.foodType;
-                    int foodQty = pets.foodQty;
+                    int foodQty = pets.dailyFoodIntake;
                     int assignedCage = pets.cageNumber;
                     int petPrice = pets.priceOfAnimal;
                     if (pets.GetType() == typeof(dogs))

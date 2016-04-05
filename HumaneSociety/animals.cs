@@ -12,11 +12,12 @@ namespace HumaneSociety
         public string breed;
         public string healthShots;
         public int foodType;
-        public int foodQty;
+        public int dailyFoodIntake;
         public int priceOfAnimal;
         public int cageNumber;
         public animals()
         {           
+
         }
         public string petName()
         {
@@ -65,9 +66,10 @@ namespace HumaneSociety
         {
             int foodSelect;
             Console.WriteLine("What flavor of food does this animal like?"
-                + "\n1)Beef \n2)Fish \n3)Chicken \n4)Turkey");
+                + "\n1)Beef \n2)Fish \n3)Chicken");
             bool answerCheck = int.TryParse(Console.ReadLine(), out foodSelect);
             if (answerCheck.Equals(false)) { return getFoodType(); }
+            if(foodSelect > 3) { Console.WriteLine("Invalid Selection."); return getFoodType(); }
             return foodSelect;
         }
         public int getFoodQTY()

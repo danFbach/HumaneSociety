@@ -19,7 +19,7 @@ namespace HumaneSociety
         public void employeeMenu()
         {
             Console.WriteLine("Welcome employeee, what are you here to do?" +
-                "\n1) Add a new animal to the catalog. \n2) Remove an animal from catalog. \n3) Approve the sale of an animal.");
+                "\n1) Add a new animal to the catalog. \n2) Remove an animal from catalog. \n3) See How much food we will need this week to feed all of the animals.");
             answerCheck = int.TryParse(Console.ReadLine(), out employeeAction);
             if (answerCheck.Equals(false)) { employeeMenu(); }
             switch (employeeAction)
@@ -31,6 +31,9 @@ namespace HumaneSociety
                     getAvailableAnimals();
                     int animalRemoval = removeSelection();
                     removeAnimal(animalRemoval);
+                    return;
+                case (3):
+                    foodCalculation();
                     return;
                 default:
                     return;
@@ -87,18 +90,29 @@ namespace HumaneSociety
         }
         public void getAvailableAnimals()
         {
+            int petType;
+            Console.WriteLine("1) Dog \n2) Cat \nEnter your selection.");
+            bool check = int.TryParse(Console.ReadLine(), out petType);
+            if (check.Equals(false)) { Console.WriteLine("Invalid Selection."); getAvailableAnimals(); }
+
             foreach (animals pets in animalInventory)
             {
                 if (pets.animalName != "name")
                 {
-                    if (pets.GetType() == typeof(dogs))
+                    if (petType.Equals(1))
                     {
-                        Console.WriteLine("Dog: " + pets.animalName +", Breed: " + pets.breed + ", Medical Shots: " + pets.healthShots + ", Price: " + pets.priceOfAnimal.ToString("C2") + ", Cage: " + pets.cageNumber);
+                        if (pets.GetType() == typeof(dogs))
+                        {
+                            Console.WriteLine("Dog: " + pets.animalName + ", Breed: " + pets.breed + ", Medical Shots: " + pets.healthShots + ", Price: " + pets.priceOfAnimal.ToString("C2") + ", Cage: " + pets.cageNumber);
+                        }
                     }
-                    if (pets.GetType() == typeof(cats))
+                    else if (petType.Equals(2))
                     {
-                        Console.WriteLine("Cats: " + pets.animalName + ", Breed: " + pets.breed + ", Medical Shots: " + pets.healthShots + ", Price: " + pets.priceOfAnimal.ToString("C2") + ", Cage: " + pets.cageNumber);
-                    }
+                        if (pets.GetType() == typeof(cats))
+                        {
+                            Console.WriteLine("Cats: " + pets.animalName + ", Breed: " + pets.breed + ", Medical Shots: " + pets.healthShots + ", Price: " + pets.priceOfAnimal.ToString("C2") + ", Cage: " + pets.cageNumber);
+                        }
+                    }                    
                 }
             }
         }
@@ -149,6 +163,53 @@ namespace HumaneSociety
             animalInventory[cageSelection] = new cats(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection, petPrice);
             save.animalInventory(animalInventory);
             return animalInventory;
+        }
+        public void foodCalculation()
+        {
+            int dogOneOrder = 0;
+            int dogTwoOrder = 0;
+            int dogThreeOrder = 0;
+            int catOneOrder = 0;
+            int catTwoOrder = 0;
+            int catThreeOrder = 0;
+            foreach (animals pet in animalInventory)
+            {
+                int foodType = pet.foodType;
+                int foodQty = pet.dailyFoodIntake;
+
+                if (pet.GetType() == typeof(dogs))
+                {
+                    if (foodType == 1)
+                    {
+                        dogOneOrder += foodQty;
+                    }
+                    else if (foodType == 2)
+                    {
+                        dogTwoOrder += foodQty;
+                    }
+                    else if (foodType == 3)
+                    {
+                        dogThreeOrder += foodQty;
+                    }
+                }
+                else if (pet.GetType() == typeof(cats))
+                {
+                    if (foodType == 1)
+                    {
+                        catOneOrder += foodQty;
+                    }
+                    else if (foodType == 2)
+                    {
+                        catTwoOrder += foodQty;
+                    }
+                    else if (foodType == 3)
+                    {
+                        catThreeOrder += foodQty;
+                    }
+                }                
+            }
+            Console.WriteLine("Dog food by flavor/week.\nBeef: " + dogOneOrder + ", Fish: " + dogTwoOrder + ", Chicken: " + dogThreeOrder);
+            Console.WriteLine("Cat food by flavor/week.\nBeef: " + catOneOrder + ", Fish: " + catTwoOrder + ", Chicken: " + catThreeOrder);
         }
     }
 }

@@ -9,14 +9,14 @@ namespace HumaneSociety
     public class dogs : animals
     {
         public int playfulness;
-        public dogs(string petsName, string species, string shotStatus, int foodType, int foodAmount, int cageAssignment, int price)
+        public dogs(string petsName, string species, string shotStatus, int foodKind, int foodAmount, int cageAssignment, int price)
         {
             priceOfAnimal = price;
             animalName = petsName;
             breed = species;
             healthShots = shotStatus;
-            this.foodType = foodType;
-            foodQty = foodAmount;
+            foodType = foodKind;
+            dailyFoodIntake = foodAmount;
             //playfulness = playfulLevel();
             cageNumber = cageAssignment;
         }
