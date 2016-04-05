@@ -23,7 +23,8 @@ namespace HumaneSociety
 
         public int initial()
         {
-            Console.WriteLine("Hello user, please identify what type of user are you? \n1) Customer \n2)Employee");
+            Console.Clear();
+            Console.WriteLine("Hello user, please identify what type of user are you? \n1) Customer \n2) Employee");
             answerCheck = int.TryParse(Console.ReadLine(), out userTypeMenu);
             if (answerCheck.Equals(false)) { return initial(); }
             switch (userTypeMenu)
@@ -31,13 +32,15 @@ namespace HumaneSociety
                 case (1):
                     clientIndex = people.newOrOldClient();
                     customerMenu();
-                    return userTypeMenu;
+                    Console.ReadKey();
+                    return initial();
                 case (2):
                     modifyAnimals.employeeMenu();
-                    return userTypeMenu; 
+                    Console.ReadKey();
+                    return initial();
                 default:
                     initial();
-                    return userTypeMenu;
+                    return initial();
             }
         }
         public void customerMenu()
@@ -46,14 +49,17 @@ namespace HumaneSociety
             string currentClientName = people.adopters[clientIndex].adopterFirstName;
             int clientsPetPreference = people.adopters[clientIndex].speciesChoice;
             Console.WriteLine("Welcome "+ currentClientName + ", to the Humane Society of awesome Animals. Please select one of the following options." +
-                "\n1) View our pet catalog. \n2)Have us suggest a pet based on your preferences. \n3)Request a pet!");
+                "\n1) View our pet catalog. \n2) Adopt a Pet! \n3) Request a pet!");
             answerCheck = int.TryParse(Console.ReadLine(), out customerAction);
             if (answerCheck.Equals(false)) { customerMenu(); }
             switch (customerAction)
             {
                 case (1):
+                    modifyAnimals.getAvailableAnimals();
                     return;
                 case (2):
+                    modifyAnimals.getAvailableAnimals();
+                    modifyAnimals.adoptAPet();
                     return;
                 case (3):
                     return;

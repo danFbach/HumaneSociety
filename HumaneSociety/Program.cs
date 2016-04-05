@@ -13,12 +13,13 @@ namespace HumaneSociety
             userInterface run = new userInterface();
             run.initialize();
             run.initial();
+            Console.ReadKey();
         }
     }
 }
 //Requirements:
 //    Console Application
-//    Must be able to add an animal to the system
+//    *Must be able to add an animal to the system
 //    Must be able to remove an animal from the system and collect money from an adopter(object adopting an animal)
 //    Must be able to track which animals have had their shots and give animals their shots if have not received it yet
 //    Must be able to track animals in the system
