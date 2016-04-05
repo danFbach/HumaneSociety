@@ -11,8 +11,8 @@ namespace HumaneSociety
         public string animalName;
         public string breed;
         public string healthShots;
-        public int foodpreference;
-        public int foodAmount;
+        public int foodType;
+        public int foodQty;
         public int cageNumber;
         public animals()
         {

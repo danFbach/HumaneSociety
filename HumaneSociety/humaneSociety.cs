@@ -9,6 +9,8 @@ namespace HumaneSociety
     public class humaneSociety
     {
         public List<animals> animalInventory = new List<animals>();
+        fileWriter save = new fileWriter();
+        fileReader load = new fileReader();
         animals animalModification = new animals();
         public bool answerCheck = true;
         public int animalType;
@@ -31,17 +33,22 @@ namespace HumaneSociety
                     return;
             }
         }
+        public void loadAnimalData()
+        {
+            animalInventory = load.animalDatabase();
+        }
         public List<animals> makeCages(int maxCages)
         {
             int cageCount = 0;
-            for (; cageCount < maxCages/2; cageCount++)
+            for (; cageCount < maxCages / 2; cageCount++)
             {
-                animalInventory.Add(new dogs(null, null, null, 0, 0, cageCount));
+                animalInventory.Add(new dogs("name", "breed", "shot", 0, 0, cageCount));
             }
-            for(;cageCount < maxCages; cageCount++)
+            for (; cageCount < maxCages; cageCount++)
             {
-                animalInventory.Add(new cats(null, null, null, 0, 0, cageCount));
+                animalInventory.Add(new cats("name", "breed", "shot", 0, 0, cageCount));
             }
+            save.animalInventory(animalInventory);
             return animalInventory;
         }
         public void selectAnimalType()
@@ -78,10 +85,15 @@ namespace HumaneSociety
                 }                
             }
             int cageSelection = animalModification.getCageNumber();            
-            animalInventory[cageSelection] = new dogs(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection);            
+            animalInventory[cageSelection] = new dogs(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection);
+            save.animalInventory(animalInventory);        
             Console.ReadKey();
             return animalInventory;
         }
+        //public void animalsInventory()
+        //{
+        //    animalDatabase.animalInventory(animalInventory);
+        //}
         public List<animals> addNewCat()
         {
             string petsName = animalModification.petName();
@@ -101,6 +113,7 @@ namespace HumaneSociety
             }
             int cageSelection = animalModification.getCageNumber();
             animalInventory[cageSelection] = new cats(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection);
+            save.animalInventory(animalInventory);
             return animalInventory;
         }
     }

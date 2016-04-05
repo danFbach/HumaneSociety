@@ -17,7 +17,8 @@ namespace HumaneSociety
         public int clientIndex;
         public void initialize()
         {
-            modifyAnimals.makeCages(40);
+            modifyAnimals.loadAnimalData();
+            //modifyAnimals.makeCages(40);
         }
 
         public int initial()
