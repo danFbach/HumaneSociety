@@ -8,7 +8,7 @@ namespace HumaneSociety
 {
     public class bankAccount
     {
-        int totalMoney;
+        public int totalMoney = 500;
         public bankAccount()
         {
         }

@@ -9,8 +9,8 @@ namespace HumaneSociety
 {
     public class fileReader
     {
-        string line;
         string filePath = @"C:/Users/Dan DCC/Documents/Visual Studio 2015/Projects/HumaneSociety/HumaneSociety/";
+        string clientFile = "clients.csv";
         string fileName = "animalInventory.csv";
         string petName;
         string breed;
@@ -30,6 +30,7 @@ namespace HumaneSociety
             int cages = 0;
             int totalCages = 40;
             List<string> tempAnimalList = new List<string>();
+            string line;
             char removal = ',';
 
             using (StreamReader getAnimalData = new StreamReader(filePath + fileName))
@@ -64,6 +65,30 @@ namespace HumaneSociety
                 }
             }
             return animalInventory;
+        }
+        public List<adopter> loadAdopters()
+        {
+            string line;
+            char removal = ',';
+            List<adopter> reloadAdopters = new List<adopter>();
+
+            using(StreamReader getClients = new StreamReader(filePath + clientFile))
+            {
+                while((line = getClients.ReadLine()) != null)
+                {
+                    string[] decodeClients = line.Split(removal);
+                    string firstName = decodeClients[0];
+                    string lastName = decodeClients[1];
+                    string strBreedPref = decodeClients[2];
+                    string petName = decodeClients[3];
+                    string petBreed = decodeClients[4];
+                    int breedPref = Convert.ToInt16(strBreedPref);
+
+                    reloadAdopters.Add(new adopter(firstName, lastName, breedPref, petName, petBreed));
+                }
+            }
+
+            return reloadAdopters;
         }
     }
 }      

@@ -29,7 +29,8 @@ namespace HumaneSociety
                     return;
                 case (2):
                     getAvailableAnimals();
-                    removeAnimal();
+                    int animalRemoval = removeSelection();
+                    removeAnimal(animalRemoval);
                     return;
                 default:
                     return;
@@ -39,32 +40,24 @@ namespace HumaneSociety
         {
             animalInventory = load.animalDatabase();
         }
-        public void adoptAPet()
+        public int adoptAPet()
         {
-            string newPetName = "";
-            int removeCage;
+            int adoptAnimal;
             Console.WriteLine("Please enter the cage number of the animal you would like to adopt.");
-            bool check = int.TryParse(Console.ReadLine(), out removeCage);
+            bool check = int.TryParse(Console.ReadLine(), out adoptAnimal);
             if (check.Equals(false)) { Console.WriteLine("Invalid Response."); adoptAPet(); }
-            if (removeCage < 20)
-            {
-                newPetName = animalInventory[removeCage].animalName;
-                animalInventory[removeCage] = (new dogs("name", "breed", "shot", 0, 0, removeCage, 0));
-            }
-            else if (removeCage >= 20 && removeCage < 40)
-            {
-                newPetName = animalInventory[removeCage].animalName;
-                animalInventory[removeCage] = (new cats("name", "breed", "shot", 0, 0, removeCage, 0));
-            }else { adoptAPet(); }
-            save.animalInventory(animalInventory);
-            Console.WriteLine("Thank you for adopting " + newPetName + "! Take good care of your new pet!" );
-            money.humaneSocietyAccount(animalInventory[removeCage].priceOfAnimal);
+            return adoptAnimal;
         }
-        public void removeAnimal()
+        public int removeSelection()
         {
-            int removeCage;
-            Console.WriteLine("Please enter the cage number of the animal you would like to remove.");
-            bool check = int.TryParse(Console.ReadLine(), out removeCage);
+            int remove;
+            Console.WriteLine("Please Select the animal that needs to be removed.");
+            bool check = int.TryParse(Console.ReadLine(), out remove);
+            if (check.Equals(false)) { return removeSelection(); }
+            return remove; 
+        }
+        public void removeAnimal(int removeCage)
+        {
             if(removeCage<20)
             {
                 animalInventory[removeCage] = (new dogs("name", "breed", "shot", 0, 0, removeCage, 0));
@@ -113,7 +106,7 @@ namespace HumaneSociety
         {
             string petsName = animalModification.petName();
             string breed = animalModification.animalBreed();
-            string shotStatus = animalModification.getAnimalShots();
+            string shotStatus = animalModification.getAnimalShots(money.totalMoney);
             int foodSelection = animalModification.getFoodType();
             int foodQtyNeeds = animalModification.getFoodQTY();
             foreach (animals info in animalInventory)
@@ -138,7 +131,7 @@ namespace HumaneSociety
         {
             string petsName = animalModification.petName();
             string breed = animalModification.animalBreed();
-            string shotStatus = animalModification.getAnimalShots();
+            string shotStatus = animalModification.getAnimalShots(money.totalMoney);
             int foodSelection = animalModification.getFoodType();
             int foodQtyNeeds = animalModification.getFoodQTY();
             foreach (animals info in animalInventory)

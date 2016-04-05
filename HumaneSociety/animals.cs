@@ -32,20 +32,34 @@ namespace HumaneSociety
             if (breed.Equals(null)) { return animalBreed(); }
             else { return breed; }
         }
-        public string getAnimalShots()
+        public string getAnimalShots(int moneyBalance)
         {
             Console.WriteLine("Has the animal had it proper shots? (Y/N)");
             string shots = Console.ReadLine();
+            shots = shots.ToLower();
             if (shots.Equals("y"))
             {
                 return shots;
             }
             else if (shots.Equals("n"))
             {
-                //TODO function for giving animal shots
-                return getAnimalShots();
+                Console.WriteLine("You'll need to give this pet the necesary shots. It will cost you $50.00. You currently have " + moneyBalance.ToString("C2") + " in your account.");
+                string giveShot = Console.ReadLine();
+                giveShot = giveShot.ToLower();
+                if (giveShot.Equals("y"))
+                {
+                    shots = "y";
+                    return shots;
+                }
+                else if (giveShot.Equals("n"))
+                {
+                    Console.WriteLine("Ok, you will have to give them their shot later.");
+                    return shots;
+                }
+                else { return getAnimalShots(moneyBalance); }
+                
             }
-            else { return getAnimalShots(); }
+            else { return getAnimalShots(moneyBalance); }
         }
         public int getFoodType()
         {

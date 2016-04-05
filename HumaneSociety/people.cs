@@ -8,15 +8,16 @@ namespace HumaneSociety
 {
     public class people
     {
+        fileWriter saveClients = new fileWriter();
+        fileReader loadClients = new fileReader();
         public List<adopter> adopters = new List<adopter>();
         public people()
         {
-
+            
         }
         public int newOrOldClient()
         {
             int clientIndex = 0;
-            adopters.Add(new adopter("Dan","Fehrenbach", 2));
             int newOrOld = getTypeOfClient();
             if (newOrOld.Equals(1))
             {                
@@ -32,20 +33,31 @@ namespace HumaneSociety
             }
             else
             {
+                saveClients.saveClients(adopters);
                 return clientIndex;
             }            
+        }
+        public void addAdoptedPet(int clientIndex, string petName, string petBreed)
+        {
+            string firstName = adopters[clientIndex].adopterFirstName;
+            string lastName = adopters[clientIndex].adopterLastName;
+            int species = adopters[clientIndex].speciesChoice;           
+
+            adopters[clientIndex] = (new adopter(firstName,lastName,species,petName,petBreed));
+            saveClients.saveClients(adopters);
         }
         public int addToClientList()
         {
             string clientFirstName = getFirstName();
             string clientLastName = getLastName();
             int getSpecies = getSpeciesPreference();
-            adopters.Add(new adopter(clientFirstName, clientLastName, getSpecies));
+            adopters.Add(new adopter(clientFirstName, clientLastName, getSpecies,"noName","noBreed"));
             int clientIndex = (adopters.Count()) - 1;
             return clientIndex;
         }
         public int checkForClient()
         {
+            adopters = loadClients.loadAdopters();
             Console.WriteLine("Please enter the last name that your account is registered under.");
             string clientCheck = Console.ReadLine();
             foreach(adopter information in adopters)
@@ -54,17 +66,13 @@ namespace HumaneSociety
                 {
                     return adopters.IndexOf(information);                    
                 }
-                else
-                {
-                    Console.WriteLine("The supplied name was not found in our database. Would you like to try searching again? (Y/N)");
-                    string restartSearch = Console.ReadLine();
-                    restartSearch = restartSearch.ToLower();
-                    if (restartSearch.Equals("y")) { return checkForClient(); }
-                    else if (restartSearch.Equals("n")) { return (-1); }
-                    else { Console.WriteLine("Invalid Entry."); return checkForClient(); }
-                }
             }
-            return (-1);
+            Console.WriteLine("The supplied name was not found in our database. Would you like to try searching again? (Y/N)");
+            string restartSearch = Console.ReadLine();
+            restartSearch = restartSearch.ToLower();
+            if (restartSearch.Equals("y")) { return checkForClient(); }
+            else if (restartSearch.Equals("n")) { return (-1); }
+            else { Console.WriteLine("Invalid Entry."); return checkForClient(); }
         }
         public string getFirstName()
         {
