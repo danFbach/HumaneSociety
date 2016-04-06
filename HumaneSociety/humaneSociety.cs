@@ -250,7 +250,7 @@ namespace HumaneSociety
             catBeefOrder = catBeefOrder * aWeek; catFishOrder = catFishOrder * aWeek; catChickenOrder = catChickenOrder * aWeek;
             Console.WriteLine("Dog food by flavor in cups/week. Beef: " + dogBeefOrder + ", Fish: " + dogFishOrder + ", Chicken: " + dogChickenOrder);
             Console.WriteLine("Cat food by flavor in cups/week. Beef: " + catBeefOrder + ", Fish: " + catFishOrder + ", Chicken: " + catChickenOrder);
-            Console.WriteLine("Press enter to retur to main screen.");
+            Console.WriteLine("Press enter to return to main screen.");
             Console.ReadKey();
         }
     }
