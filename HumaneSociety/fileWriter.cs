@@ -9,13 +9,12 @@ namespace HumaneSociety
 {
     public class fileWriter
     {
-        string filePath = @"C:/Users/Dan DCC/Documents/Visual Studio 2015/Projects/HumaneSociety/HumaneSociety/";
         string animalFile = "animalInventory.csv";
         string clientFile = "clients.csv";
         string moneyFile = "bankAccount.csv";
         public void animalInventory(List<animals> animalsInStock)
         {
-            using (StreamWriter saveDatabase = new StreamWriter(filePath + animalFile))
+            using (StreamWriter saveDatabase = new StreamWriter(animalFile, false))
             {                
                 foreach (animals pets in animalsInStock)
                 {                    
@@ -40,7 +39,7 @@ namespace HumaneSociety
         }
         public void saveClients(List<adopter> adopters)
         {
-            using (StreamWriter clients = new StreamWriter(filePath + clientFile))
+            using (StreamWriter clients = new StreamWriter(clientFile, false))
             {
                 foreach(adopter person in adopters)
                 {
@@ -56,7 +55,7 @@ namespace HumaneSociety
         }
         public void bankAccount(int balance)
         {
-            using(StreamWriter saveBalance = new StreamWriter(filePath + moneyFile))
+            using(StreamWriter saveBalance = new StreamWriter(moneyFile))
             {
                 saveBalance.Write(balance);
             }

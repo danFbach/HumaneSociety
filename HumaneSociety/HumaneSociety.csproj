@@ -57,12 +57,7 @@
     <Compile Include="userInterface.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="animalInventory.csv" />
     <None Include="App.config" />
-    <None Include="clients.csv" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bankAccount.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

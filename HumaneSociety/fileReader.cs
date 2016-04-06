@@ -9,7 +9,6 @@ namespace HumaneSociety
 {
     public class fileReader
     {
-        string filePath = @"C:/Users/Dan DCC/Documents/Visual Studio 2015/Projects/HumaneSociety/HumaneSociety/";
         string clientFile = "clients.csv";
         string fileName = "animalInventory.csv";
         string moneyFile = "bankAccount.csv";
@@ -32,7 +31,7 @@ namespace HumaneSociety
             List<string> tempAnimalList = new List<string>();
             string line;
             char removal = ',';
-            using (StreamReader getAnimalData = new StreamReader(filePath + fileName))
+            using (StreamReader getAnimalData = new StreamReader(fileName))
             {
                 while ((line = getAnimalData.ReadLine()) != null)
                 {
@@ -69,7 +68,7 @@ namespace HumaneSociety
             string line;
             char removal = ',';
             List<adopter> reloadAdopters = new List<adopter>();
-            using(StreamReader getClients = new StreamReader(filePath + clientFile))
+            using(StreamReader getClients = new StreamReader(clientFile))
             {
                 while((line = getClients.ReadLine()) != null)
                 {
@@ -90,7 +89,7 @@ namespace HumaneSociety
         {
             string strbalance;
             int balance;
-            using(StreamReader money = new StreamReader(filePath + moneyFile))
+            using(StreamReader money = new StreamReader(moneyFile))
             {
                 strbalance = money.ReadLine();
                 balance = Convert.ToInt16(strbalance);

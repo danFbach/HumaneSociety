@@ -70,7 +70,6 @@ namespace HumaneSociety
                     people.addAdoptedPet(clientIndex,petName,breed);
                     modifyAnimals.removeAnimal(petIndex);
                     Console.WriteLine(currentClientName + " " + people.adopters[clientIndex].adopterLastName + " just purchased a " + breed + " who's name is " + petName + ".");
-                    Console.ReadLine();
                     break;
                 case (3):
                     break;
