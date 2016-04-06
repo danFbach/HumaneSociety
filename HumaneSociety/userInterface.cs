@@ -30,11 +30,9 @@ namespace HumaneSociety
                 case (1):
                     clientIndex = people.newOrOldClient();
                     customerMenu();
-                    Console.ReadKey();
                     return initial();
                 case (2):
                     modifyAnimals.employeeMenu();
-                    Console.ReadKey();
                     return initial();
                 case (3):
                     return userTypeMenu;
@@ -50,7 +48,7 @@ namespace HumaneSociety
             string clientLastName = people.adopters[clientIndex].adopterLastName;
             int clientsPetPreference = people.adopters[clientIndex].speciesChoice;
             Console.WriteLine("Welcome "+ clientFirstName + ", to the Humane Society of awesome Animals. Please select one of the following options." +
-                "\n1) View our pet catalog. \n2) Adopt a Pet! \n3) Exit to previous menu.");
+                "\n\r1) View our pet catalog. \n\r2) Adopt a Pet! \n\r3) Exit to previous menu.");
             answerCheck = int.TryParse(Console.ReadLine(), out customerAction);
             if (answerCheck.Equals(false)) { customerMenu(); }
             switch (customerAction)
@@ -71,7 +69,8 @@ namespace HumaneSociety
                     people.addAdoptedPet(clientIndex,petName,breed);
                     modifyAnimals.removeAnimal(petIndex);
                     string petType = modifyAnimals.getAnimalType(petIndex);
-                    Console.WriteLine("{0} {1} just purchased a {3} {2} who's name is {4}.", clientFirstName, clientLastName, petType,breed, petName);
+                    Console.WriteLine("{0} {1} just purchased a {3} {2} who's name is {4}. \nPress enter to return to main screen.", clientFirstName, clientLastName, petType,breed, petName);
+                    Console.ReadKey();
                     break;
                 case (3):
                     break;

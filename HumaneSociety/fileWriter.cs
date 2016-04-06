@@ -29,7 +29,6 @@ namespace HumaneSociety
                     {
                         saveDatabase.WriteLine("{0},{1},{2},{3},{4},{5},{6}", name, breed, shots, foodType, foodQty, assignedCage, petPrice);
                     }
-
                     if (pets.GetType() == typeof(cat))
                     {
                         saveDatabase.WriteLine("{0},{1},{2},{3},{4},{5},{6}", name, breed, shots, foodType, foodQty, assignedCage, petPrice);
@@ -48,7 +47,6 @@ namespace HumaneSociety
                     int petPreference = person.speciesChoice;
                     string petName = person.petName;
                     string petBreed = person.petBreed;
-
                     clients.WriteLine("{0},{1},{2},{3},{4}", firstName,lastName,petPreference,petName,petBreed);
                 }
             }

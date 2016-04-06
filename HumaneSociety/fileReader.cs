@@ -26,9 +26,9 @@ namespace HumaneSociety
         List<animals> animalInventory = new List<animals>();
         public List<animals> animalDatabase()
         {
+            animalInventory.Clear();
             int cages = 0;
             int totalCages = 40;
-            List<string> tempAnimalList = new List<string>();
             string line;
             char removal = ',';
             using (StreamReader getAnimalData = new StreamReader(fileName))
@@ -47,13 +47,12 @@ namespace HumaneSociety
                     foodQty = Convert.ToInt16(strFoodQty);
                     assignedCage = Convert.ToInt16(strCageNumber);
                     price = Convert.ToInt16(strPrice);
-
-                    for(; cages < (totalCages/2);)
-                    { 
+                    for (; cages < (totalCages / 2);)
+                    {
                         animalInventory.Add(new dog(petName, breed, shotStatus, foodType, foodQty, assignedCage, price));
                         break;
                     }
-                    for(;19 < cages && cages < totalCages;)
+                    for (; 19 < cages && cages < totalCages;)
                     {
                         animalInventory.Add(new cat(petName, breed, shotStatus, foodType, foodQty, assignedCage, price));
                         break;
@@ -68,9 +67,9 @@ namespace HumaneSociety
             string line;
             char removal = ',';
             List<adopter> reloadAdopters = new List<adopter>();
-            using(StreamReader getClients = new StreamReader(clientFile))
+            using (StreamReader getClients = new StreamReader(clientFile))
             {
-                while((line = getClients.ReadLine()) != null)
+                while ((line = getClients.ReadLine()) != null)
                 {
                     string[] decodeClients = line.Split(removal);
                     string firstName = decodeClients[0];
@@ -79,7 +78,6 @@ namespace HumaneSociety
                     string petName = decodeClients[3];
                     string petBreed = decodeClients[4];
                     int breedPref = Convert.ToInt16(strBreedPref);
-
                     reloadAdopters.Add(new adopter(firstName, lastName, breedPref, petName, petBreed));
                 }
             }
@@ -89,7 +87,7 @@ namespace HumaneSociety
         {
             string strbalance;
             int balance;
-            using(StreamReader money = new StreamReader(moneyFile))
+            using (StreamReader money = new StreamReader(moneyFile))
             {
                 strbalance = money.ReadLine();
                 balance = Convert.ToInt16(strbalance);
@@ -97,6 +95,6 @@ namespace HumaneSociety
             return balance;
         }
     }
-}      
-            
+}
+
 

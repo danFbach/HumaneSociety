@@ -11,9 +11,6 @@ namespace HumaneSociety
         fileWriter saveClients = new fileWriter();
         fileReader loadClients = new fileReader();
         public List<adopter> adopters = new List<adopter>();
-        public people()
-        {            
-        }
         public int newOrOldClient()
         {
             int clientIndex = 0;

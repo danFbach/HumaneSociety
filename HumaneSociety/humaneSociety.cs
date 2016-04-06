@@ -19,7 +19,7 @@ namespace HumaneSociety
         public void employeeMenu()
         {
             Console.WriteLine("Welcome employeee, what are you here to do?" +
-                "\n1) Add a new animal to the catalog. \n2) Remove an animal from catalog. \n3) See How much food we will need this week to feed all of the animals. \n4) Give an animal their shots. \n5) View Available animals.");
+                 "\n\r1) Add a new animal to the catalog. \n\r2) Remove an animal from catalog. \n\r3) See How much food we will need this week to feed all of the animals. \n\r4) Give an animal their shots. \n\r5) View Available animals. \n\r6) Return to previous menu.");
             answerCheck = int.TryParse(Console.ReadLine(), out employeeAction);
             if (answerCheck.Equals(false)) { employeeMenu(); }
             switch (employeeAction)
@@ -49,6 +49,8 @@ namespace HumaneSociety
                 case (5):
                     getAvailableAnimals();
                     employeeMenu();
+                    return;
+                case (6):
                     return;
                 default:
                     return;
@@ -91,16 +93,19 @@ namespace HumaneSociety
         }
         public void removeAnimal(int removeCage)
         {
+            string animalType = "animal";
             if (removeCage < 20)
             {
                 animalInventory[removeCage] = (new dog("name", "breed", "shot", 0, 0, removeCage, 0));
+                animalType = "Dog";
             }
             else if (removeCage >= 20 && removeCage < 40)
             {
                 animalInventory[removeCage] = (new cat("name", "breed", "shot", 0, 0, removeCage, 0));
+                animalType = "Cat";
             }
             save.animalInventory(animalInventory);
-            Console.WriteLine("The animal from cage " + removeCage + " has been removed from the database");
+            Console.WriteLine("The {0} from cage {1} has been removed from the database", animalType, removeCage);
         }
         public void selectAnimalType()
         {
@@ -122,22 +127,22 @@ namespace HumaneSociety
         public void getAvailableAnimals()
         {
             int petType;
-            Console.WriteLine("1) Dog \n2) Cat \nEnter your selection.");
+            Console.WriteLine("Would you like to see... \n\r1) Dogs? \n\r2) Cats? \n\r3) Both?");
             bool check = int.TryParse(Console.ReadLine(), out petType);
             if (check.Equals(false)) { Console.WriteLine("Invalid Selection."); getAvailableAnimals(); }
-            if (petType > 2) { getAvailableAnimals(); }
+            if (petType > 3) { getAvailableAnimals(); }
             foreach (animals pets in animalInventory)
             {
                 if (pets.animalName != "name")
                 {
-                    if (petType.Equals(1))
+                    if (petType.Equals(1) || petType.Equals(3))
                     {
                         if (pets.GetType() == typeof(dog))
                         {
                             Console.WriteLine("Dog: " + pets.animalName + ", Breed: " + pets.breed + ", Medical Shots: " + pets.healthShots + ", Price: " + pets.priceOfAnimal.ToString("C2") + ", Cage: " + pets.cageNumber);
                         }
                     }
-                    else if (petType.Equals(2))
+                    if (petType.Equals(2) || petType.Equals(3))
                     {
                         if (pets.GetType() == typeof(cat))
                         {
@@ -245,6 +250,8 @@ namespace HumaneSociety
             catBeefOrder = catBeefOrder * aWeek; catFishOrder = catFishOrder * aWeek; catChickenOrder = catChickenOrder * aWeek;
             Console.WriteLine("Dog food by flavor in cups/week. Beef: " + dogBeefOrder + ", Fish: " + dogFishOrder + ", Chicken: " + dogChickenOrder);
             Console.WriteLine("Cat food by flavor in cups/week. Beef: " + catBeefOrder + ", Fish: " + catFishOrder + ", Chicken: " + catChickenOrder);
+            Console.WriteLine("Press enter to retur to main screen.");
+            Console.ReadKey();
         }
     }
 }

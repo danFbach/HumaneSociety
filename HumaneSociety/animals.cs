@@ -24,14 +24,14 @@ namespace HumaneSociety
         }
         public string animalBreed()
         {
-            Console.WriteLine("Please enter the animals breed.");
+            Console.WriteLine("Please enter one word to describe the pet. i.e. color, smelly, fluffy.");
             string breed = Console.ReadLine();
             if (breed.Equals(null)) { return animalBreed(); }
             else { return breed; }
         }
         public string getAnimalShots(int moneyBalance)
         {
-            Console.WriteLine("Has the animal had it proper shots? (Y/N)");
+            Console.WriteLine("Has the animal had its proper shots? (Y/N)");
             string shots = Console.ReadLine();
             shots = shots.ToLower();
             if (shots.Equals("y"))
@@ -48,7 +48,7 @@ namespace HumaneSociety
         public string giveShots(int moneyBalance)
         {
             string shots;
-            Console.WriteLine("Would you like to give this pet the necesary shots? It will cost you $50.00. You currently have " + moneyBalance.ToString("C2") + " in your account.(Y/N)");
+            Console.WriteLine("Would you like to give this pet the necesary shots? (Y/N)\n\rIt will cost you $50.00. You currently have " + moneyBalance.ToString("C2") + " in your account.");
             string giveShot = Console.ReadLine();
             giveShot = giveShot.ToLower();
             if (giveShot.Equals("y"))
@@ -75,7 +75,7 @@ namespace HumaneSociety
         {
             int foodSelect;
             Console.WriteLine("What flavor of food does this animal like?"
-                + "\n1)Beef \n2)Fish \n3)Chicken");
+                + "\n\r1)Beef \n\r2)Fish \n\r3)Chicken");
             bool answerCheck = int.TryParse(Console.ReadLine(), out foodSelect);
             if (answerCheck.Equals(false)) { return getFoodType(); }
             if (foodSelect > 3) { Console.WriteLine("Invalid Selection."); return getFoodType(); }
