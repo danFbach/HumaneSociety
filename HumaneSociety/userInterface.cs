@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace HumaneSociety
 {
     public class userInterface
-    {
-        
+    {        
         people people = new people();
         humaneSociety modifyAnimals = new humaneSociety();
         bool answerCheck = true;
@@ -19,7 +18,6 @@ namespace HumaneSociety
         {
             modifyAnimals.loadAnimalData();
         }
-
         public int initial()
         {
             initialize();
@@ -80,7 +78,6 @@ namespace HumaneSociety
                     customerMenu();
                     break;
             }
-        }
-        
+        }        
     }
 }

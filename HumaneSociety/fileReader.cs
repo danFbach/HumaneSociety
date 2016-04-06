@@ -24,7 +24,6 @@ namespace HumaneSociety
         int foodQty;
         int assignedCage;
         int price;
-
         List<animals> animalInventory = new List<animals>();
         public List<animals> animalDatabase()
         {
@@ -33,10 +32,8 @@ namespace HumaneSociety
             List<string> tempAnimalList = new List<string>();
             string line;
             char removal = ',';
-
             using (StreamReader getAnimalData = new StreamReader(filePath + fileName))
             {
-
                 while ((line = getAnimalData.ReadLine()) != null)
                 {
                     string[] decodeAnimals = line.Split(removal);
@@ -72,7 +69,6 @@ namespace HumaneSociety
             string line;
             char removal = ',';
             List<adopter> reloadAdopters = new List<adopter>();
-
             using(StreamReader getClients = new StreamReader(filePath + clientFile))
             {
                 while((line = getClients.ReadLine()) != null)
@@ -88,7 +84,6 @@ namespace HumaneSociety
                     reloadAdopters.Add(new adopter(firstName, lastName, breedPref, petName, petBreed));
                 }
             }
-
             return reloadAdopters;
         }
         public int loadMoney()

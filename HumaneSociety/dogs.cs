@@ -9,24 +9,15 @@ namespace HumaneSociety
     public class dogs : animals
     {
         public int playfulness;
-        public dogs(string petsName, string species, string shotStatus, int foodKind, int foodAmount, int cageAssignment, int price)
+        public dogs(string petsName, string species, string shotStatus, int foodPrefence, int foodQtyNeeds, int cageAssignment, int price)
         {
             priceOfAnimal = price;
             animalName = petsName;
             breed = species;
             healthShots = shotStatus;
-            foodType = foodKind;
-            dailyFoodIntake = foodAmount;
-            //playfulness = playfulLevel();
+            foodType = foodPrefence;
+            dailyFoodIntake = foodQtyNeeds;
             cageNumber = cageAssignment;
-        }
-        public int playfulLevel()
-        {           
-            int playLevel;
-            Console.WriteLine("Please enter, using numbers 1-10, how playful the dog is.");
-            bool checkAnswer = int.TryParse(Console.ReadLine(),out playLevel);
-            if (checkAnswer.Equals(false)) { return playfulLevel(); }
-            return playLevel;
         }
     }
 }

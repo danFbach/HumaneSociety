@@ -8,10 +8,8 @@ namespace HumaneSociety
 {
     public class bankAccount
     {
-
         public bankAccount()
         {
-
         }
         public void humaneSocietyAccount(int income)
         {

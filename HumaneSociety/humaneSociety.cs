@@ -151,8 +151,7 @@ namespace HumaneSociety
             save.animalInventory(animalInventory);        
             Console.ReadKey();
             return animalInventory;
-        }
-        
+        }        
         public List<animals> addNewCat()
         {
             int HSBalance = money.getMoney();
@@ -224,7 +223,6 @@ namespace HumaneSociety
             }
             dogBeefOrder = dogBeefOrder * aWeek; dogFishOrder = dogFishOrder * aWeek; dogChickenOrder = dogChickenOrder * aWeek;
             catBeefOrder = catBeefOrder * aWeek; catFishOrder = catFishOrder * aWeek; catChickenOrder = catChickenOrder * aWeek;
-
             Console.WriteLine("Dog food by flavor in cups/week. Beef: " + dogBeefOrder + ", Fish: " + dogFishOrder + ", Chicken: " + dogChickenOrder);
             Console.WriteLine("Cat food by flavor in cups/week. Beef: " + catBeefOrder + ", Fish: " + catFishOrder + ", Chicken: " + catChickenOrder);
         }

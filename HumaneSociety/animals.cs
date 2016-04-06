@@ -16,8 +16,7 @@ namespace HumaneSociety
         public int priceOfAnimal;
         public int cageNumber;
         public animals()
-        {           
-
+        {
         }
         public string petName()
         {
@@ -51,7 +50,6 @@ namespace HumaneSociety
         }
         public string giveShots(int moneyBalance)
         {
-           
             string shots;
             Console.WriteLine("Would you like to give this pet the necesary shots? It will cost you $50.00. You currently have " + moneyBalance.ToString("C2") + " in your account.(Y/N)");
             string giveShot = Console.ReadLine();
@@ -69,7 +67,6 @@ namespace HumaneSociety
                 return shots;
             }
             else { return giveShots(moneyBalance); }
-            
         }
         public void adjustMoney(int moneyBalance, int amountToChange)
         {
@@ -84,7 +81,7 @@ namespace HumaneSociety
                 + "\n1)Beef \n2)Fish \n3)Chicken");
             bool answerCheck = int.TryParse(Console.ReadLine(), out foodSelect);
             if (answerCheck.Equals(false)) { return getFoodType(); }
-            if(foodSelect > 3) { Console.WriteLine("Invalid Selection."); return getFoodType(); }
+            if (foodSelect > 3) { Console.WriteLine("Invalid Selection."); return getFoodType(); }
             return foodSelect;
         }
         public int getFoodQTY()

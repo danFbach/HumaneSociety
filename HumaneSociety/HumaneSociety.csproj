@@ -48,11 +48,9 @@
     <Compile Include="bankAccount.cs" />
     <Compile Include="cats.cs" />
     <Compile Include="dogs.cs" />
-    <Compile Include="employee.cs" />
     <Compile Include="fileReader.cs" />
     <Compile Include="fileWriter.cs" />
     <Compile Include="humaneSociety.cs" />
-    <Compile Include="Interface1.cs" />
     <Compile Include="people.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

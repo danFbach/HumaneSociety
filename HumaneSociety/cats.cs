@@ -8,14 +8,14 @@ namespace HumaneSociety
 {
     public class cats : animals
     {
-        public cats(string petsName, string species, string shotStatus, int foodKind, int foodAmount, int cageAssignment, int price)
+        public cats(string petsName, string species, string shotStatus, int foodPreference, int foodQtyNeeds, int cageAssignment, int price)
         {
             priceOfAnimal = price;
             animalName = petsName;
             breed = species;
             healthShots = shotStatus;
-            foodType = foodKind;
-            dailyFoodIntake = foodAmount;
+            foodType = foodPreference;
+            dailyFoodIntake = foodQtyNeeds;
             cageNumber = cageAssignment;
         }
     }

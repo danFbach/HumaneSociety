@@ -12,8 +12,7 @@ namespace HumaneSociety
         fileReader loadClients = new fileReader();
         public List<adopter> adopters = new List<adopter>();
         public people()
-        {
-            
+        {            
         }
         public int newOrOldClient()
         {
@@ -42,7 +41,6 @@ namespace HumaneSociety
             string firstName = adopters[clientIndex].adopterFirstName;
             string lastName = adopters[clientIndex].adopterLastName;
             int species = adopters[clientIndex].speciesChoice;           
-
             adopters[clientIndex] = (new adopter(firstName,lastName,species,petName,petBreed));
             saveClients.saveClients(adopters);
         }
@@ -84,8 +82,7 @@ namespace HumaneSociety
             nameCheck = nameCheck.ToLower();
             if (nameCheck.Equals("n")) { return getFirstName(); }
             else if (nameCheck.Equals("y")) { return clientFirst; }
-            else { Console.WriteLine("Invalid entry."); return getFirstName(); }
-            
+            else { Console.WriteLine("Invalid entry."); return getFirstName(); }            
         }
         public string getLastName()
         {
@@ -98,7 +95,6 @@ namespace HumaneSociety
             if (nameCheck.Equals("n")) { return getFirstName(); }
             else if (nameCheck.Equals("y")) { return clientLast; }
             else { Console.WriteLine("Invalid entry."); return getFirstName(); }
-
         }
         public int getSpeciesPreference()
         {
