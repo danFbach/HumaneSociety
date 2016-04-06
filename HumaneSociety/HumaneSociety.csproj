@@ -46,8 +46,8 @@
     <Compile Include="adopter.cs" />
     <Compile Include="animals.cs" />
     <Compile Include="bankAccount.cs" />
-    <Compile Include="cats.cs" />
-    <Compile Include="dogs.cs" />
+    <Compile Include="cat.cs" />
+    <Compile Include="dog.cs" />
     <Compile Include="fileReader.cs" />
     <Compile Include="fileWriter.cs" />
     <Compile Include="humaneSociety.cs" />

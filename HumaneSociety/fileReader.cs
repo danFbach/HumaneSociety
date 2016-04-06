@@ -50,12 +50,12 @@ namespace HumaneSociety
 
                     for(; cages < (totalCages/2);)
                     { 
-                        animalInventory.Add(new dogs(petName, breed, shotStatus, foodType, foodQty, assignedCage, price));
+                        animalInventory.Add(new dog(petName, breed, shotStatus, foodType, foodQty, assignedCage, price));
                         break;
                     }
                     for(;19 < cages && cages < totalCages;)
                     {
-                        animalInventory.Add(new cats(petName, breed, shotStatus, foodType, foodQty, assignedCage, price));
+                        animalInventory.Add(new cat(petName, breed, shotStatus, foodType, foodQty, assignedCage, price));
                         break;
                     }
                     cages++;

@@ -19,7 +19,7 @@ namespace HumaneSociety
         public void employeeMenu()
         {
             Console.WriteLine("Welcome employeee, what are you here to do?" +
-                "\n1) Add a new animal to the catalog. \n2) Remove an animal from catalog. \n3) See How much food we will need this week to feed all of the animals. \n4) Give an animal their shots.");
+                "\n1) Add a new animal to the catalog. \n2) Remove an animal from catalog. \n3) See How much food we will need this week to feed all of the animals. \n4) Give an animal their shots. \n5) View Available animals.");
             answerCheck = int.TryParse(Console.ReadLine(), out employeeAction);
             if (answerCheck.Equals(false)) { employeeMenu(); }
             switch (employeeAction)
@@ -46,9 +46,28 @@ namespace HumaneSociety
                     if (shots.Equals("y")) { animalInventory[animalCage].healthShots = "y"; }
                     save.animalInventory(animalInventory);
                     return;
+                case (5):
+                    getAvailableAnimals();
+                    employeeMenu();
+                    return;
                 default:
                     return;
             }
+        }
+        public string getAnimalType(int cageNumber)
+        {
+            string animalType;
+            if (animalInventory[cageNumber].GetType() == typeof(dog))
+            {
+                animalType = "Dog";
+                return animalType;
+            }
+            else if(animalInventory[cageNumber].GetType() == typeof(cat))
+            {
+                animalType = "Cat";
+                return animalType;
+            }
+            return "no pet";
         }
         public void loadAnimalData()
         {
@@ -74,11 +93,11 @@ namespace HumaneSociety
         {
             if(removeCage<20)
             {
-                animalInventory[removeCage] = (new dogs("name", "breed", "shot", 0, 0, removeCage, 0));
+                animalInventory[removeCage] = (new dog("name", "breed", "shot", 0, 0, removeCage, 0));
             }
             else if(removeCage >= 20 && removeCage < 40)
             {
-                animalInventory[removeCage] = (new cats("name", "breed", "shot", 0, 0, removeCage, 0));
+                animalInventory[removeCage] = (new cat("name", "breed", "shot", 0, 0, removeCage, 0));
             }
             save.animalInventory(animalInventory);
             Console.WriteLine("The animal from cage " + removeCage + " has been removed from the database");
@@ -98,6 +117,7 @@ namespace HumaneSociety
             {
                 addNewDog();
             }
+            else { selectAnimalType(); }
         }
         public void getAvailableAnimals()
         {
@@ -105,21 +125,21 @@ namespace HumaneSociety
             Console.WriteLine("1) Dog \n2) Cat \nEnter your selection.");
             bool check = int.TryParse(Console.ReadLine(), out petType);
             if (check.Equals(false)) { Console.WriteLine("Invalid Selection."); getAvailableAnimals(); }
-
+            if(petType > 2) { getAvailableAnimals(); }
             foreach (animals pets in animalInventory)
             {
                 if (pets.animalName != "name")
                 {
                     if (petType.Equals(1))
                     {
-                        if (pets.GetType() == typeof(dogs))
+                        if (pets.GetType() == typeof(dog))
                         {
                             Console.WriteLine("Dog: " + pets.animalName + ", Breed: " + pets.breed + ", Medical Shots: " + pets.healthShots + ", Price: " + pets.priceOfAnimal.ToString("C2") + ", Cage: " + pets.cageNumber);
                         }
                     }
                     else if (petType.Equals(2))
                     {
-                        if (pets.GetType() == typeof(cats))
+                        if (pets.GetType() == typeof(cat))
                         {
                             Console.WriteLine("Cats: " + pets.animalName + ", Breed: " + pets.breed + ", Medical Shots: " + pets.healthShots + ", Price: " + pets.priceOfAnimal.ToString("C2") + ", Cage: " + pets.cageNumber);
                         }
@@ -137,7 +157,7 @@ namespace HumaneSociety
             int foodQtyNeeds = animalModification.getFoodQTY();
             foreach (animals info in animalInventory)
             {
-                if(info.GetType() == typeof(dogs))
+                if(info.GetType() == typeof(dog))
                 {
                     if (info.animalName == "name")
                     {
@@ -147,7 +167,7 @@ namespace HumaneSociety
             }
             int cageSelection = animalModification.getCageNumber();
             int petPrice = animalModification.setPrice();           
-            animalInventory[cageSelection] = new dogs(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection, petPrice);
+            animalInventory[cageSelection] = new dog(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection, petPrice);
             save.animalInventory(animalInventory);        
             Console.ReadKey();
             return animalInventory;
@@ -162,7 +182,7 @@ namespace HumaneSociety
             int foodQtyNeeds = animalModification.getFoodQTY();
             foreach (animals info in animalInventory)
             {
-                if(info.GetType() == typeof(cats))
+                if(info.GetType() == typeof(cat))
                 {
                     if (info.animalName == "name")
                     {
@@ -172,7 +192,7 @@ namespace HumaneSociety
             }
             int cageSelection = animalModification.getCageNumber();
             int petPrice = animalModification.setPrice();
-            animalInventory[cageSelection] = new cats(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection, petPrice);
+            animalInventory[cageSelection] = new cat(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection, petPrice);
             save.animalInventory(animalInventory);
             return animalInventory;
         }
@@ -190,7 +210,7 @@ namespace HumaneSociety
                 int foodType = pet.foodType;
                 int foodQty = pet.dailyFoodIntake;
 
-                if (pet.GetType() == typeof(dogs))
+                if (pet.GetType() == typeof(dog))
                 {
                     if (foodType == 1)
                     {
@@ -205,7 +225,7 @@ namespace HumaneSociety
                         dogChickenOrder += foodQty;
                     }
                 }
-                else if (pet.GetType() == typeof(cats))
+                else if (pet.GetType() == typeof(cat))
                 {
                     if (foodType == 1)
                     {

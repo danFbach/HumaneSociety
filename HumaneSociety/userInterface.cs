@@ -46,9 +46,10 @@ namespace HumaneSociety
         public void customerMenu()
         {
             bankAccount updateMoney = new bankAccount();
-            string currentClientName = people.adopters[clientIndex].adopterFirstName;
+            string clientFirstName = people.adopters[clientIndex].adopterFirstName;
+            string clientLastName = people.adopters[clientIndex].adopterLastName;
             int clientsPetPreference = people.adopters[clientIndex].speciesChoice;
-            Console.WriteLine("Welcome "+ currentClientName + ", to the Humane Society of awesome Animals. Please select one of the following options." +
+            Console.WriteLine("Welcome "+ clientFirstName + ", to the Humane Society of awesome Animals. Please select one of the following options." +
                 "\n1) View our pet catalog. \n2) Adopt a Pet! \n3) Exit to previous menu.");
             answerCheck = int.TryParse(Console.ReadLine(), out customerAction);
             if (answerCheck.Equals(false)) { customerMenu(); }
@@ -69,7 +70,8 @@ namespace HumaneSociety
                     updateMoney.humaneSocietyAccount(newBalance);
                     people.addAdoptedPet(clientIndex,petName,breed);
                     modifyAnimals.removeAnimal(petIndex);
-                    Console.WriteLine(currentClientName + " " + people.adopters[clientIndex].adopterLastName + " just purchased a " + breed + " who's name is " + petName + ".");
+                    string petType = modifyAnimals.getAnimalType(petIndex);
+                    Console.WriteLine("{0} {1} just purchased a {3} {2} who's name is {4}.", clientFirstName, clientLastName, petType,breed, petName);
                     break;
                 case (3):
                     break;

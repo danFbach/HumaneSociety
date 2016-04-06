@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace HumaneSociety
 {
-    public class cats : animals
+    public class dog : animals
     {
-        public cats(string petsName, string species, string shotStatus, int foodPreference, int foodQtyNeeds, int cageAssignment, int price)
+        public int playfulness;
+        public dog(string petsName, string species, string shotStatus, int foodPrefence, int foodQtyNeeds, int cageAssignment, int price)
         {
             priceOfAnimal = price;
             animalName = petsName;
             breed = species;
             healthShots = shotStatus;
-            foodType = foodPreference;
+            foodType = foodPrefence;
             dailyFoodIntake = foodQtyNeeds;
             cageNumber = cageAssignment;
         }

@@ -25,12 +25,12 @@ namespace HumaneSociety
                     int foodQty = pets.dailyFoodIntake;
                     int assignedCage = pets.cageNumber;
                     int petPrice = pets.priceOfAnimal;
-                    if (pets.GetType() == typeof(dogs))
+                    if (pets.GetType() == typeof(dog))
                     {
                         saveDatabase.WriteLine("{0},{1},{2},{3},{4},{5},{6}", name, breed, shots, foodType, foodQty, assignedCage, petPrice);
                     }
 
-                    if (pets.GetType() == typeof(cats))
+                    if (pets.GetType() == typeof(cat))
                     {
                         saveDatabase.WriteLine("{0},{1},{2},{3},{4},{5},{6}", name, breed, shots, foodType, foodQty, assignedCage, petPrice);
                     }              
@@ -39,7 +39,7 @@ namespace HumaneSociety
         }
         public void saveClients(List<adopter> adopters)
         {
-            using (StreamWriter clients = new StreamWriter(clientFile, false))
+            using (StreamWriter clients = new StreamWriter(clientFile))
             {
                 foreach(adopter person in adopters)
                 {
