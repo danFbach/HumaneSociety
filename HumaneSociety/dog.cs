@@ -18,6 +18,7 @@ namespace HumaneSociety
             foodType = foodPrefence;
             dailyFoodIntake = foodQtyNeeds;
             cageNumber = cageAssignment;
+
         }
     }
 }

@@ -15,9 +15,6 @@ namespace HumaneSociety
         public int dailyFoodIntake;
         public int priceOfAnimal;
         public int cageNumber;
-        public animals()
-        {
-        }
         public string petName()
         {
             Console.WriteLine("What is the name of the pet?");

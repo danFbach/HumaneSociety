@@ -62,7 +62,7 @@ namespace HumaneSociety
                 animalType = "Dog";
                 return animalType;
             }
-            else if(animalInventory[cageNumber].GetType() == typeof(cat))
+            else if (animalInventory[cageNumber].GetType() == typeof(cat))
             {
                 animalType = "Cat";
                 return animalType;
@@ -87,15 +87,15 @@ namespace HumaneSociety
             Console.WriteLine("Please Select the animal that needs to be removed.");
             bool check = int.TryParse(Console.ReadLine(), out remove);
             if (check.Equals(false)) { return removeSelection(); }
-            return remove; 
+            return remove;
         }
         public void removeAnimal(int removeCage)
         {
-            if(removeCage<20)
+            if (removeCage < 20)
             {
                 animalInventory[removeCage] = (new dog("name", "breed", "shot", 0, 0, removeCage, 0));
             }
-            else if(removeCage >= 20 && removeCage < 40)
+            else if (removeCage >= 20 && removeCage < 40)
             {
                 animalInventory[removeCage] = (new cat("name", "breed", "shot", 0, 0, removeCage, 0));
             }
@@ -125,7 +125,7 @@ namespace HumaneSociety
             Console.WriteLine("1) Dog \n2) Cat \nEnter your selection.");
             bool check = int.TryParse(Console.ReadLine(), out petType);
             if (check.Equals(false)) { Console.WriteLine("Invalid Selection."); getAvailableAnimals(); }
-            if(petType > 2) { getAvailableAnimals(); }
+            if (petType > 2) { getAvailableAnimals(); }
             foreach (animals pets in animalInventory)
             {
                 if (pets.animalName != "name")
@@ -143,7 +143,7 @@ namespace HumaneSociety
                         {
                             Console.WriteLine("Cats: " + pets.animalName + ", Breed: " + pets.breed + ", Medical Shots: " + pets.healthShots + ", Price: " + pets.priceOfAnimal.ToString("C2") + ", Cage: " + pets.cageNumber);
                         }
-                    }                    
+                    }
                 }
             }
         }
@@ -157,21 +157,21 @@ namespace HumaneSociety
             int foodQtyNeeds = animalModification.getFoodQTY();
             foreach (animals info in animalInventory)
             {
-                if(info.GetType() == typeof(dog))
+                if (info.GetType() == typeof(dog))
                 {
                     if (info.animalName == "name")
                     {
                         Console.Write(info.cageNumber + ", ");
                     }
-                }                
+                }
             }
             int cageSelection = animalModification.getCageNumber();
-            int petPrice = animalModification.setPrice();           
+            int petPrice = animalModification.setPrice();
             animalInventory[cageSelection] = new dog(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection, petPrice);
-            save.animalInventory(animalInventory);        
+            save.animalInventory(animalInventory);
             Console.ReadKey();
             return animalInventory;
-        }        
+        }
         public List<animals> addNewCat()
         {
             int HSBalance = money.getMoney();
@@ -182,7 +182,7 @@ namespace HumaneSociety
             int foodQtyNeeds = animalModification.getFoodQTY();
             foreach (animals info in animalInventory)
             {
-                if(info.GetType() == typeof(cat))
+                if (info.GetType() == typeof(cat))
                 {
                     if (info.animalName == "name")
                     {
@@ -239,7 +239,7 @@ namespace HumaneSociety
                     {
                         catChickenOrder += foodQty;
                     }
-                }                
+                }
             }
             dogBeefOrder = dogBeefOrder * aWeek; dogFishOrder = dogFishOrder * aWeek; dogChickenOrder = dogChickenOrder * aWeek;
             catBeefOrder = catBeefOrder * aWeek; catFishOrder = catFishOrder * aWeek; catChickenOrder = catChickenOrder * aWeek;
