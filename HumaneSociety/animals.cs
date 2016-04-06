@@ -44,23 +44,38 @@ namespace HumaneSociety
             }
             else if (shots.Equals("n"))
             {
-                Console.WriteLine("You'll need to give this pet the necesary shots. It will cost you $50.00. You currently have " + moneyBalance.ToString("C2") + " in your account.");
-                string giveShot = Console.ReadLine();
-                giveShot = giveShot.ToLower();
-                if (giveShot.Equals("y"))
-                {
-                    shots = "y";
-                    return shots;
-                }
-                else if (giveShot.Equals("n"))
-                {
-                    Console.WriteLine("Ok, you will have to give them their shot later.");
-                    return shots;
-                }
-                else { return getAnimalShots(moneyBalance); }
-                
+                shots = giveShots(moneyBalance);
+                return shots;
             }
             else { return getAnimalShots(moneyBalance); }
+        }
+        public string giveShots(int moneyBalance)
+        {
+           
+            string shots;
+            Console.WriteLine("Would you like to give this pet the necesary shots? It will cost you $50.00. You currently have " + moneyBalance.ToString("C2") + " in your account.(Y/N)");
+            string giveShot = Console.ReadLine();
+            giveShot = giveShot.ToLower();
+            if (giveShot.Equals("y"))
+            {
+                adjustMoney(moneyBalance, (-50));
+                shots = "y";
+                return shots;
+            }
+            else if (giveShot.Equals("n"))
+            {
+                Console.WriteLine("Ok, you will have to give them their shot later.");
+                shots = "n";
+                return shots;
+            }
+            else { return giveShots(moneyBalance); }
+            
+        }
+        public void adjustMoney(int moneyBalance, int amountToChange)
+        {
+            bankAccount updateMoney = new bankAccount();
+            moneyBalance += amountToChange;
+            updateMoney.humaneSocietyAccount(moneyBalance);
         }
         public int getFoodType()
         {

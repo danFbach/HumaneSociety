@@ -12,6 +12,7 @@ namespace HumaneSociety
         string filePath = @"C:/Users/Dan DCC/Documents/Visual Studio 2015/Projects/HumaneSociety/HumaneSociety/";
         string animalFile = "animalInventory.csv";
         string clientFile = "clients.csv";
+        string moneyFile = "bankAccount.csv";
         public void animalInventory(List<animals> animalsInStock)
         {
             using (StreamWriter saveDatabase = new StreamWriter(filePath + animalFile))
@@ -51,6 +52,13 @@ namespace HumaneSociety
 
                     clients.WriteLine("{0},{1},{2},{3},{4}", firstName,lastName,petPreference,petName,petBreed);
                 }
+            }
+        }
+        public void bankAccount(int balance)
+        {
+            using(StreamWriter saveBalance = new StreamWriter(filePath + moneyFile))
+            {
+                saveBalance.Write(balance);
             }
         }
     }

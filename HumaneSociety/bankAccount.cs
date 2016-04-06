@@ -8,13 +8,22 @@ namespace HumaneSociety
 {
     public class bankAccount
     {
-        public int totalMoney = 500;
+
         public bankAccount()
         {
+
         }
         public void humaneSocietyAccount(int income)
         {
-            totalMoney += income;
+            fileWriter moneyBalance = new fileWriter();
+            moneyBalance.bankAccount(income);
+        }
+        public int getMoney()
+        {
+            int balance;
+            fileReader retrieve = new fileReader();
+            balance = retrieve.loadMoney();
+            return balance;
         }
     }
 }

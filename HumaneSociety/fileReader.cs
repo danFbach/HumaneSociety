@@ -12,6 +12,7 @@ namespace HumaneSociety
         string filePath = @"C:/Users/Dan DCC/Documents/Visual Studio 2015/Projects/HumaneSociety/HumaneSociety/";
         string clientFile = "clients.csv";
         string fileName = "animalInventory.csv";
+        string moneyFile = "bankAccount.csv";
         string petName;
         string breed;
         string shotStatus;
@@ -89,6 +90,17 @@ namespace HumaneSociety
             }
 
             return reloadAdopters;
+        }
+        public int loadMoney()
+        {
+            string strbalance;
+            int balance;
+            using(StreamReader money = new StreamReader(filePath + moneyFile))
+            {
+                strbalance = money.ReadLine();
+                balance = Convert.ToInt16(strbalance);
+            }
+            return balance;
         }
     }
 }      

@@ -19,7 +19,7 @@ namespace HumaneSociety
         public void employeeMenu()
         {
             Console.WriteLine("Welcome employeee, what are you here to do?" +
-                "\n1) Add a new animal to the catalog. \n2) Remove an animal from catalog. \n3) See How much food we will need this week to feed all of the animals.");
+                "\n1) Add a new animal to the catalog. \n2) Remove an animal from catalog. \n3) See How much food we will need this week to feed all of the animals. \n4) Give an animal their shots.");
             answerCheck = int.TryParse(Console.ReadLine(), out employeeAction);
             if (answerCheck.Equals(false)) { employeeMenu(); }
             switch (employeeAction)
@@ -34,6 +34,17 @@ namespace HumaneSociety
                     return;
                 case (3):
                     foodCalculation();
+                    return;
+                case (4):
+                    int balance = money.getMoney();
+                    int animalCage;
+                    getAvailableAnimals();
+                    Console.WriteLine("Please Select the cage number of the animal that needs shots");
+                    bool check = int.TryParse(Console.ReadLine(), out animalCage);
+                    if (check.Equals(false)) { employeeMenu(); }
+                    string shots = animalModification.giveShots(balance);
+                    if (shots.Equals("y")) { animalInventory[animalCage].healthShots = "y"; }
+                    save.animalInventory(animalInventory);
                     return;
                 default:
                     return;
@@ -118,9 +129,10 @@ namespace HumaneSociety
         }
         public List<animals> addNewDog()
         {
+            int HSBalance = money.getMoney();
             string petsName = animalModification.petName();
             string breed = animalModification.animalBreed();
-            string shotStatus = animalModification.getAnimalShots(money.totalMoney);
+            string shotStatus = animalModification.getAnimalShots(HSBalance);
             int foodSelection = animalModification.getFoodType();
             int foodQtyNeeds = animalModification.getFoodQTY();
             foreach (animals info in animalInventory)
@@ -143,9 +155,10 @@ namespace HumaneSociety
         
         public List<animals> addNewCat()
         {
+            int HSBalance = money.getMoney();
             string petsName = animalModification.petName();
             string breed = animalModification.animalBreed();
-            string shotStatus = animalModification.getAnimalShots(money.totalMoney);
+            string shotStatus = animalModification.getAnimalShots(HSBalance);
             int foodSelection = animalModification.getFoodType();
             int foodQtyNeeds = animalModification.getFoodQTY();
             foreach (animals info in animalInventory)
@@ -166,12 +179,13 @@ namespace HumaneSociety
         }
         public void foodCalculation()
         {
-            int dogOneOrder = 0;
-            int dogTwoOrder = 0;
-            int dogThreeOrder = 0;
-            int catOneOrder = 0;
-            int catTwoOrder = 0;
-            int catThreeOrder = 0;
+            int dogBeefOrder = 0;
+            int dogFishOrder = 0;
+            int dogChickenOrder = 0;
+            int catBeefOrder = 0;
+            int catFishOrder = 0;
+            int catChickenOrder = 0;
+            int aWeek = 7;
             foreach (animals pet in animalInventory)
             {
                 int foodType = pet.foodType;
@@ -181,35 +195,38 @@ namespace HumaneSociety
                 {
                     if (foodType == 1)
                     {
-                        dogOneOrder += foodQty;
+                        dogBeefOrder += foodQty;
                     }
                     else if (foodType == 2)
                     {
-                        dogTwoOrder += foodQty;
+                        dogFishOrder += foodQty;
                     }
                     else if (foodType == 3)
                     {
-                        dogThreeOrder += foodQty;
+                        dogChickenOrder += foodQty;
                     }
                 }
                 else if (pet.GetType() == typeof(cats))
                 {
                     if (foodType == 1)
                     {
-                        catOneOrder += foodQty;
+                        catBeefOrder += foodQty;
                     }
                     else if (foodType == 2)
                     {
-                        catTwoOrder += foodQty;
+                        catFishOrder += foodQty;
                     }
                     else if (foodType == 3)
                     {
-                        catThreeOrder += foodQty;
+                        catChickenOrder += foodQty;
                     }
                 }                
             }
-            Console.WriteLine("Dog food by flavor/week.\nBeef: " + dogOneOrder + ", Fish: " + dogTwoOrder + ", Chicken: " + dogThreeOrder);
-            Console.WriteLine("Cat food by flavor/week.\nBeef: " + catOneOrder + ", Fish: " + catTwoOrder + ", Chicken: " + catThreeOrder);
+            dogBeefOrder = dogBeefOrder * aWeek; dogFishOrder = dogFishOrder * aWeek; dogChickenOrder = dogChickenOrder * aWeek;
+            catBeefOrder = catBeefOrder * aWeek; catFishOrder = catFishOrder * aWeek; catChickenOrder = catChickenOrder * aWeek;
+
+            Console.WriteLine("Dog food by flavor in cups/week. Beef: " + dogBeefOrder + ", Fish: " + dogFishOrder + ", Chicken: " + dogChickenOrder);
+            Console.WriteLine("Cat food by flavor in cups/week. Beef: " + catBeefOrder + ", Fish: " + catFishOrder + ", Chicken: " + catChickenOrder);
         }
     }
 }
