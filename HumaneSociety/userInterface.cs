@@ -73,7 +73,7 @@ namespace HumaneSociety
                     people.addAdoptedPet(clientIndex,petName,breed);
                     modifyAnimals.removeAnimal(petIndex);
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("{0} {1} just purchased a {3} {2} who's name is {4}.", clientFirstName, clientLastName, petType, breed, petName);
+                    Console.WriteLine("{0} {1} just purchased a {3} {2} who's name is {4} for {5}.", clientFirstName, clientLastName, petType, breed, petName, petPrice.ToString("C2"));
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("Press enter to return to main screen.");
                     Console.ReadKey();

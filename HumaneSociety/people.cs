@@ -96,10 +96,10 @@ namespace HumaneSociety
         public int getSpeciesPreference()
         {
             int species;
-            Console.WriteLine("Please select the species in which you are interested in adoptng. \n1) Dogs \n2) Cats \n3) Reptiles");
+            Console.WriteLine("Please select the species in which you are interested in adoptng. \n1) Dogs \n2) Cats");
             bool check = int.TryParse(Console.ReadLine(), out species);
             if (check.Equals(false)) { return getSpeciesPreference(); }
-            if (species > 0 && species <= 3) { return species;}
+            if (species > 0 && species <= 2) { return species;}
             else { return getSpeciesPreference(); }
         }
         public int getTypeOfClient()
