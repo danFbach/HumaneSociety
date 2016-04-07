@@ -89,12 +89,15 @@ namespace HumaneSociety
             if (answerCheck.Equals(false)) { return getFoodQTY(); }
             return foodAmount;
         }
-        public int getCageNumber()
+        public int getCageNumber(List<int> availableCages)
         {
+            Console.ForegroundColor = ConsoleColor.White;
             int cageNumberSelection;
             Console.WriteLine("Please select the number of an available cage for the pet.");
             bool answerCheck = int.TryParse(Console.ReadLine(), out cageNumberSelection);
-            if (answerCheck.Equals(false)) { return getCageNumber(); }
+            if (answerCheck.Equals(false)) { return getCageNumber(availableCages); }
+            Console.ForegroundColor = ConsoleColor.Red;
+            if (!availableCages.Contains(cageNumberSelection)) { Console.WriteLine("Cage is not available, please select another."); return getCageNumber(availableCages); }
             return cageNumberSelection;
         }
         public int setPrice()

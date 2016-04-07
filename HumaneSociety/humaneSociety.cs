@@ -75,12 +75,15 @@ namespace HumaneSociety
         {
             animalInventory = load.animalDatabase();
         }
-        public int adoptAPet()
+        public int adoptAPet(List<int> availablePets)
         {
+            Console.ForegroundColor = ConsoleColor.White;
             int adoptAnimal;
             Console.WriteLine("Please enter the cage number of the animal you would like to adopt.");
             bool check = int.TryParse(Console.ReadLine(), out adoptAnimal);
-            if (check.Equals(false)) { Console.WriteLine("Invalid Response."); adoptAPet(); }
+            if (check.Equals(false)) { Console.WriteLine("Invalid Response."); adoptAPet(availablePets); }
+            Console.ForegroundColor = ConsoleColor.Red;
+            if (!availablePets.Contains(adoptAnimal)) { Console.WriteLine("There is no animal in that cage. Please select another."); return adoptAPet(availablePets); }
             return adoptAnimal;
         }
         public int removeSelection()
@@ -93,6 +96,7 @@ namespace HumaneSociety
         }
         public void removeAnimal(int removeCage)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             string animalType = "animal";
             if (removeCage < 20)
             {
@@ -124,8 +128,10 @@ namespace HumaneSociety
             }
             else { selectAnimalType(); }
         }
-        public void getAvailableAnimals()
+        public List<int> getAvailableAnimals()
         {
+            List<int> availablePets = new List<int>();
+            availablePets.Clear();
             int petType;
             Console.WriteLine("Would you like to see... \n\r1) Dogs? \n\r2) Cats? \n\r3) Both?");
             bool check = int.TryParse(Console.ReadLine(), out petType);
@@ -140,6 +146,7 @@ namespace HumaneSociety
                         if (pets.GetType() == typeof(dog))
                         {
                             Console.WriteLine("Dog: " + pets.animalName + ", Breed: " + pets.breed + ", Medical Shots: " + pets.healthShots + ", Price: " + pets.priceOfAnimal.ToString("C2") + ", Cage: " + pets.cageNumber);
+                            availablePets.Add(pets.cageNumber);
                         }
                     }
                     if (petType.Equals(2) || petType.Equals(3))
@@ -147,13 +154,17 @@ namespace HumaneSociety
                         if (pets.GetType() == typeof(cat))
                         {
                             Console.WriteLine("Cats: " + pets.animalName + ", Breed: " + pets.breed + ", Medical Shots: " + pets.healthShots + ", Price: " + pets.priceOfAnimal.ToString("C2") + ", Cage: " + pets.cageNumber);
+                            availablePets.Add(pets.cageNumber);
                         }
                     }
                 }
             }
+            return availablePets;
         }
         public List<animals> addNewDog()
         {
+            List<int> availableCages = new List<int>();
+            availableCages.Clear();
             int HSBalance = money.getMoney();
             string petsName = animalModification.petName();
             string breed = animalModification.animalBreed();
@@ -166,19 +177,24 @@ namespace HumaneSociety
                 {
                     if (info.animalName == "name")
                     {
+                        availableCages.Add(info.cageNumber);
                         Console.Write(info.cageNumber + ", ");
                     }
                 }
             }
-            int cageSelection = animalModification.getCageNumber();
+            int cageSelection = animalModification.getCageNumber(availableCages);
+            Console.ForegroundColor = ConsoleColor.White;
             int petPrice = animalModification.setPrice();
             animalInventory[cageSelection] = new dog(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection, petPrice);
             save.animalInventory(animalInventory);
+            Console.WriteLine("You have successfully added a dog named {0}, in cage {1}, and for a price of {2}. Please press enter to continue.", petsName, cageSelection, petPrice.ToString("C2"));
             Console.ReadKey();
             return animalInventory;
         }
         public List<animals> addNewCat()
         {
+            List<int> availableCages = new List<int>();
+            availableCages.Clear();
             int HSBalance = money.getMoney();
             string petsName = animalModification.petName();
             string breed = animalModification.animalBreed();
@@ -191,14 +207,17 @@ namespace HumaneSociety
                 {
                     if (info.animalName == "name")
                     {
+                        availableCages.Add(info.cageNumber);
                         Console.Write(info.cageNumber + ", ");
                     }
                 }
             }
-            int cageSelection = animalModification.getCageNumber();
+            int cageSelection = animalModification.getCageNumber(availableCages);
+            Console.ForegroundColor = ConsoleColor.White;
             int petPrice = animalModification.setPrice();
             animalInventory[cageSelection] = new cat(petsName, breed, shotStatus, foodSelection, foodQtyNeeds, cageSelection, petPrice);
             save.animalInventory(animalInventory);
+            Console.WriteLine("You have successfully added a cat named {0}, in cage {1}, and for a price of {2}. Please press enter to continue.", petsName, cageSelection, petPrice.ToString("C2"));
             return animalInventory;
         }
         public void foodCalculation()

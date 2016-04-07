@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace HumaneSociety
 {
     public class userInterface
-    {        
+    {
         people people = new people();
         humaneSociety modifyAnimals = new humaneSociety();
         bool answerCheck = true;
@@ -20,6 +20,7 @@ namespace HumaneSociety
         }
         public int initial()
         {
+            Console.ForegroundColor = ConsoleColor.White;
             initialize();
             Console.Clear();
             Console.WriteLine("Hello, please identify what type of user you are. \n1) Customer \n2) Employee \n3) Shut off computer.");
@@ -58,18 +59,23 @@ namespace HumaneSociety
                     customerMenu();
                     break;
                 case (2):
-                    modifyAnimals.getAvailableAnimals();
-                    int petIndex = modifyAnimals.adoptAPet();
+                    List<int> availablePets = new List<int>();
+                    availablePets = modifyAnimals.getAvailableAnimals();
+                    int petIndex = modifyAnimals.adoptAPet(availablePets);
+                    Console.ForegroundColor = ConsoleColor.White;
                     string petName = modifyAnimals.animalInventory[petIndex].animalName;
                     string breed = modifyAnimals.animalInventory[petIndex].breed;
                     int petPrice = modifyAnimals.animalInventory[petIndex].priceOfAnimal;
+                    string petType = modifyAnimals.getAnimalType(petIndex);
                     int currentBalance = updateMoney.getMoney();
                     int newBalance = currentBalance + petPrice;
                     updateMoney.humaneSocietyAccount(newBalance);
                     people.addAdoptedPet(clientIndex,petName,breed);
                     modifyAnimals.removeAnimal(petIndex);
-                    string petType = modifyAnimals.getAnimalType(petIndex);
-                    Console.WriteLine("{0} {1} just purchased a {3} {2} who's name is {4}. \nPress enter to return to main screen.", clientFirstName, clientLastName, petType,breed, petName);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("{0} {1} just purchased a {3} {2} who's name is {4}.", clientFirstName, clientLastName, petType, breed, petName);
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("Press enter to return to main screen.");
                     Console.ReadKey();
                     break;
                 case (3):
